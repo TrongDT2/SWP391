@@ -17,7 +17,7 @@ import model.Account;
  *
  * @author Aur
  */
-public class LoginController extends HttpServlet {
+public class RegisterController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,7 +32,16 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet RegisterController</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet RegisterController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -48,7 +57,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     /**
@@ -63,26 +72,29 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String username = request.getParameter("username");
+        String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String rePassword = request.getParameter("rePassword");
+        String success = null;
         String message = null;
-        LoginDAO login = new LoginDAO();
-        Account acc = login.Login(username, password);
-        if (username.trim().isEmpty() || password.trim().isEmpty()) {
-            message = "Username and password can not be blank";
-        } else if (acc != null) {
-                    if (!acc.getPassword().equals(password)) {
-                        message = "Username or password is invalid";
-                    } else {
-                        request.setAttribute("username", "Hi, " + acc.getUsername());
-                        request.getRequestDispatcher("home.jsp").forward(request, response);
-                    }
-                } else {
-                    message = "Username or password is invalid";
-                }
-        if (message != null) {
+
+        if (!password.equals(rePassword)) {
+            message = "mật khẩu không trùng khớp";
             request.setAttribute("message", message);
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
-            return;
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+        } else {
+            LoginDAO dao = new LoginDAO();
+            Account a = dao.checkAccountExist(username);
+            if (a == null) {
+                dao.register(username, password, email);
+                success = "Create account success!";
+                request.setAttribute("success", success);
+                request.getRequestDispatcher("Login.jsp").forward(request, response);
+
+            } else {
+                message = "Tên đăng nhập đã được sử dụng!";
+                request.getRequestDispatcher("register.jsp").forward(request, response);
+            }
         }
 
     }

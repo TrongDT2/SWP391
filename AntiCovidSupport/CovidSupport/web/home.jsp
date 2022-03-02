@@ -32,13 +32,18 @@
             </button>
             <div class="container">
                 <!-- Begin Logo -->
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="home.jsp">
                     <img src="img/logo1.jpeg" alt="logo">
                 </a>
                 <!-- End Logo -->
                 <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                     <!-- Begin Menu -->
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                        <c:if test="${username != null}">
+                            <a class="nav-link" href="#">${username}</a>
+                        </c:if>
+                        </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="index.html">Tin tức <span class="sr-only">(current)</span></a>
                         </li>
@@ -46,8 +51,9 @@
                             <a class="nav-link" href="">Hỏi đáp</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Register.jsp">Đăng ký/ Đăng nhập</a>
+                            <a class="nav-link" href="Login.jsp">Đăng nhập</a>
                         </li>
+                        
                     </ul>
                     <!-- End Menu -->
                     <!-- Begin Search -->
