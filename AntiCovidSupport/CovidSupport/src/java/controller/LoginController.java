@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Account;
 
 /**
@@ -48,7 +49,9 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        HttpSession session = request.getSession();
+        session.removeAttribute("data_session");
+        response.sendRedirect("home.jsp");
     }
 
     /**
@@ -65,20 +68,22 @@ public class LoginController extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String message = null;
-        LoginDAO login = new LoginDAO();
-        Account acc = login.Login(username, password);
+
+        LoginDAO dao = new LoginDAO();
+        Account acc = dao.Login(username, password);
         if (username.trim().isEmpty() || password.trim().isEmpty()) {
-            message = "Username and password can not be blank";
+            message = "Tên đăng nhập hoặc mật khẩu không thể để trống";
         } else if (acc != null) {
-                    if (!acc.getPassword().equals(password)) {
-                        message = "Username or password is invalid";
-                    } else {
-                        request.setAttribute("username", "Hi, " + acc.getUsername());
-                        request.getRequestDispatcher("home.jsp").forward(request, response);
-                    }
-                } else {
-                    message = "Username or password is invalid";
-                }
+            if (!acc.getPassword().equals(password)) {
+                message = "Sai mật khẩu hoặc tên đăng nhập!";
+            } else {
+                HttpSession session = request.getSession();
+                session.setAttribute("data_session", acc);
+                request.getRequestDispatcher("home.jsp").forward(request, response);
+            }
+        } else {
+            message = "Sai mật khẩu hoặc tên đăng nhập!";
+        }
         if (message != null) {
             request.setAttribute("message", message);
             request.getRequestDispatcher("Login.jsp").forward(request, response);
