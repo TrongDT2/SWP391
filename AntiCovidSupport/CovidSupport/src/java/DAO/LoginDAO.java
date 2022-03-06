@@ -36,15 +36,22 @@ public class LoginDAO {
     public Account Login(String username, String password) {
 
         try {
-            String sql = "select username, password from UserInfo where username = ? and password = ?";
+            String sql = "select * from UserInfo where username = ? and password = ?";
             PreparedStatement stm = conn.prepareStatement(sql);
             stm.setString(1, username);
             stm.setString(2, password);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Account a = new Account();
+                a.setUser_id(rs.getInt("User_id"));
                 a.setUsername(username);
                 a.setPassword(password);
+                a.setPhone(rs.getInt("Phone"));
+                a.setImage(rs.getString("Image"));
+                a.setEmail(rs.getString("Email"));
+                a.setAddress(rs.getString("Address"));
+                a.setRole_id(rs.getInt("Role_id"));
+
                 return a;
             }
 
@@ -60,7 +67,7 @@ public class LoginDAO {
             String sql = "select username from UserInfo where username = ?";
             PreparedStatement stm = conn.prepareStatement(sql);
             stm.setString(1, username);
-            
+
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Account a = new Account();
@@ -85,5 +92,29 @@ public class LoginDAO {
         } catch (SQLException ex) {
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public Account getAllAccount() {
+        try {
+            String sql = "select * from UserInfo";
+            PreparedStatement stm = conn.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Account a = new Account();
+                a.setUser_id(rs.getInt("User_id"));
+                a.setUsername(rs.getString("Username"));
+                a.setPassword(rs.getString("Password"));
+                a.setPhone(rs.getInt("Phone"));
+                a.setImage(rs.getString("Image"));
+                a.setEmail(rs.getString("Email"));
+                a.setAddress(rs.getString("Address"));
+                a.setRole_id(rs.getInt("Role_id"));
+                return a;
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

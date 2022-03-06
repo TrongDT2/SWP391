@@ -38,9 +38,15 @@
                 <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                     <!-- Begin Menu -->
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
+                        <li class="nav-item dropdown">
                         <c:if test="${sessionScope.data_session != null}">
-                            <a class="nav-link" href="profile.jsp">Hi, ${sessionScope.data_session.username}</a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">Hi, ${sessionScope.data_session.username}</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="accountDetail.jsp">Thông tin tài khoản</a>
+                                <a class="dropdown-item" href="profile.jsp">Hồ sơ của bạn</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="LoginController">Đăng xuất</a>
+                            </div>
                         </c:if>
                         </li>
                         <li class="nav-item active">
@@ -55,11 +61,7 @@
                             <a class="nav-link" href="Login.jsp">Đăng nhập</a>
                         </li>
                         </c:if>
-                        <c:if test="${sessionScope.data_session != null}">
-                        <li class="nav-item">
-                            <a class="nav-link" href="LoginController">Đăng xuất</a>
-                        </li>
-                        </c:if>
+                       
                         
                     </ul>
                     <!-- End Menu -->
@@ -74,5 +76,9 @@
         </nav>
         <!-- End Nav
         ================================================== -->
+        <script src="javaScript/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="javaScript/bootstrap.min.js"></script>
+        <script src="javaScript/ie10-viewport-bug-workaround.js"></script>
     </body>
 </html>
