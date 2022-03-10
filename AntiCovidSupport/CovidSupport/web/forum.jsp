@@ -41,6 +41,13 @@
 
             <!-- Begin Featured
             ================================================== -->
+            <h4>Chu de</h4>
+            <select>
+                <option value="category_id">DO AN</option>
+                <option value="category_id">THUOC</option>
+                <option value="category_id">KHAC</option>
+            </select>
+            <input type="text" placeholder="Tìm kiếm...."> <button>Tìm kiếm</button>
             <section class="featured-posts">
                 <div class="section-title">
                     <h2><span>Featured</span></h2>
