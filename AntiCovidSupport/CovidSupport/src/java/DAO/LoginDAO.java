@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -26,7 +27,7 @@ public class LoginDAO {
     public LoginDAO() {
         try {
             db = new DBContext();
-            conn = db.connection;
+            conn = db.getConnection();
             System.out.println("ket noi thanh cong");
         } catch (Exception e) {
             System.out.println("loi " + conn);

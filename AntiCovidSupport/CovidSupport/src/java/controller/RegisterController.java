@@ -4,7 +4,8 @@
  */
 package controller;
 
-import DAO.LoginDAO;
+import dao.UserDAO;
+import impl.UserDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -31,18 +32,7 @@ public class RegisterController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RegisterController</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet RegisterController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -83,11 +73,11 @@ public class RegisterController extends HttpServlet {
             request.setAttribute("message", message);
             request.getRequestDispatcher("register.jsp").forward(request, response);
         } else {
-            LoginDAO dao = new LoginDAO();
+            UserDAO dao = new UserDAOImpl();
             Account a = dao.checkAccountExist(username);
             if (a == null) {
                 dao.register(username, password, email);
-                success = "Tạo tài khoản thành công!";
+                success = "Create account success!";
                 request.setAttribute("success", success);
                 request.getRequestDispatcher("Login.jsp").forward(request, response);
 

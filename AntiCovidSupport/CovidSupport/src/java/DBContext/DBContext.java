@@ -7,25 +7,55 @@ package DBContext;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author longn
- */
 public class DBContext {
-    public Connection connection;
 
-    public DBContext() {
+    private String HOST = "localhost";
+    private String PORT = "1433";
+    private String DATABASE_NAME = "QLNS";
+    private String USERNAME = "sa";
+    private String PASSWORD = "sa";
+
+    public Connection getConnection() throws Exception {
+        Connection connection = null;
         try {
-            String user = "sa";
-            String pass = "123456";
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=CovidSP";
+            String url = "jdbc:sqlserver://" + HOST + ":"
+                    + PORT + ";databaseName=" + DATABASE_NAME;
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            connection = DriverManager.getConnection(url, user, pass);
+            connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
+            return connection;
         } catch (ClassNotFoundException | SQLException ex) {
+
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return connection;
+    }
+
+    protected void closeConnection(Connection connection) {
+        try {
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    protected void closeResultSet(ResultSet rs) {
+        try {
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    protected void closePreparedStatement(PreparedStatement st) {
+        try {
+            st.close();
+        } catch (SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

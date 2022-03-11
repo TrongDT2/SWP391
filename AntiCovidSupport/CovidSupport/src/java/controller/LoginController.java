@@ -4,14 +4,14 @@
  */
 package controller;
 
-import DAO.LoginDAO;
+import dao.UserDAO;
+import impl.UserDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.Account;
 
 /**
@@ -32,9 +32,7 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
 
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -49,9 +47,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.removeAttribute("data_session");
-        response.sendRedirect("home.jsp");
+
     }
 
     /**
@@ -68,21 +64,19 @@ public class LoginController extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String message = null;
-
-        LoginDAO dao = new LoginDAO();
-        Account acc = dao.Login(username, password);
+        UserDAO login = new UserDAOImpl();
+        Account acc = login.login(username, password);
         if (username.trim().isEmpty() || password.trim().isEmpty()) {
-            message = "Tên đăng nhập hoặc mật khẩu không thể để trống";
+            message = "Username and password can not be blank";
         } else if (acc != null) {
             if (!acc.getPassword().equals(password)) {
-                message = "Sai mật khẩu hoặc tên đăng nhập!";
+                message = "Username or password is invalid";
             } else {
-                HttpSession session = request.getSession();
-                session.setAttribute("data_session", acc);
+                request.setAttribute("username", "Hi, " + acc.getUsername());
                 request.getRequestDispatcher("home.jsp").forward(request, response);
             }
         } else {
-            message = "Sai mật khẩu hoặc tên đăng nhập!";
+            message = "Username or password is invalid";
         }
         if (message != null) {
             request.setAttribute("message", message);
