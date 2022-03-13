@@ -33,7 +33,7 @@
             <div class="mainheading">
                 <h1 class="sitetitle">Anti covid support</h1>
                 <p class="lead">
-                    Cùng nhau chung tay đẩy lùi covid 19
+                    Cùng nhau chung tay đẩy lùi covid 19lasldfl
                 </p>
             </div>
             <!-- End Site Title
