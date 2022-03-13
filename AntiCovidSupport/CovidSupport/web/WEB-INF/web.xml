@@ -18,7 +18,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
-        <url-pattern>/LoginController</url-pattern>
+      <url-pattern>/view/client/news-list</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
@@ -30,7 +30,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>BoardNewDetailController</servlet-name>
-        <url-pattern>/BoardNewDetailController</url-pattern>
+        <url-pattern>/view/client/news-list-detail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -54,7 +54,7 @@
                             <a class="nav-link" href="profile.jsp">Tin tức <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Hỏi đáp</a>
+                            <a class="nav-link" href="forum.jsp">Hỏi đáp</a>
                         </li>
                         
                         <c:if test="${sessionScope.data_session == null}">

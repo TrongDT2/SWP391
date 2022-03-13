@@ -33,7 +33,7 @@
             <div class="mainheading">
                 <h1 class="sitetitle">Anti covid support</h1>
                 <p class="lead">
-                    Cùng nhau chung tay đẩy lùi covid 19lasldfl
+                    Cùng nhau chung tay đẩy lùi covid 19
                 </p>
             </div>
             <!-- End Site Title
@@ -41,7 +41,7 @@
 
             <!-- Begin Featured
             ================================================== -->
-            <h4>Chu de</h4>
+            <h4>Chủ đề</h4>
             <select>
                 <option value="category_id">DO AN</option>
                 <option value="category_id">THUOC</option>

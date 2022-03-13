@@ -16,21 +16,20 @@ import java.util.logging.Logger;
 public class DBContext {
 
     private String HOST = "localhost";
-    private String PORT = "1433";
-    private String DATABASE_NAME = "QLNS";
+    private String PORT = "58560";
+    private String DATABASE_NAME = "CovidSP";
     private String USERNAME = "sa";
-    private String PASSWORD = "sa";
+    private String PASSWORD = "123456";
 
     public Connection getConnection() throws Exception {
         Connection connection = null;
         try {
             String url = "jdbc:sqlserver://" + HOST + ":"
-                    + PORT + ";databaseName=" + DATABASE_NAME;
+                    + PORT + ";databaseName=" + DATABASE_NAME +"";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
             return connection;
         } catch (ClassNotFoundException | SQLException ex) {
-
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return connection;
