@@ -16,14 +16,7 @@ import java.util.logging.Logger;
 public class DBContext {
 
     private String HOST = "localhost";
-
-
-
-    private String PORT = "1433";
-
-
     private String PORT = "58560";
-
     private String DATABASE_NAME = "CovidSP";
     private String USERNAME = "sa";
     private String PASSWORD = "123456";
