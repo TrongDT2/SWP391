@@ -44,12 +44,9 @@ public class BoardNewListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        String id = req.getParameter("id");
-        Boardnew boardnew = boardnewService.get(Integer.parseInt(id));
-        req.setAttribute("boardnew", boardnew);
         List<Boardnew> boardnewList = boardnewService.getAll();
         req.setAttribute("boardnewlist", boardnewList);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/view/client/blog-single.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/view/client/blog-archive.jsp");
         dispatcher.forward(req, resp);
     }
 

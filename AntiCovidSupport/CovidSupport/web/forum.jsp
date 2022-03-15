@@ -25,7 +25,7 @@
     </head>
     <body>
 
-        <%@include file="header.jsp" %>
+        <%@include file="component/header.jsp" %>
 
         <!-- Begin Site Title
         ================================================== -->
@@ -41,7 +41,7 @@
 
             <!-- Begin Featured
             ================================================== -->
-            <h4>Chu de</h4>
+            <h4>Chủ đề</h4>
             <select>
                 <option value="category_id">DO AN</option>
                 <option value="category_id">THUOC</option>

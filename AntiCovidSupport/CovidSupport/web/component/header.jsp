@@ -1,4 +1,3 @@
-
 <%-- 
     Document   : header
     Created on : Mar 3, 2022, 11:04:20 PM
@@ -25,7 +24,7 @@
     </head>
     <body>
         <!-- Begin Nav
-        ================================================== -->
+          ================================================== -->
         <nav class="navbar navbar-toggleable-md navbar-light bg-white fixed-top mediumnavigation">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -39,31 +38,41 @@
                 <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                     <!-- Begin Menu -->
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown">
                         <c:if test="${sessionScope.data_session != null}">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">Hi, ${sessionScope.data_session.username}</a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="accountDetail.jsp">Thông tin tài khoản</a>
-                                <a class="dropdown-item" href="profile.jsp">Hồ sơ của bạn</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="LoginController">Đăng xuất</a>
-                            </div>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">Hi, ${sessionScope.data_session.username}</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="accountDetail.jsp">Thông tin tài khoản</a>
+                                    <a class="dropdown-item" href="profile.jsp">Hồ sơ của bạn</a>
+                                    <div class="dropdown-divider"></div>
+                                    <c:if test="${sessionScope.data_session.role_id == 1}">
+                                        <a class="dropdown-item" href="view/administrator/managerUser.jsp">Quản lý website</a>
+                                        <div class="dropdown-divider"></div>
+                                    </c:if>
+                                    <c:if test="${sessionScope.data_session.role_id  == 2 || sessionScope.data_session.role_id  == 3}">
+                                        <a class="dropdown-item" href="accountDetail.jsp">Tạo bài viết</a>
+                                        <a class="dropdown-item" href="accountDetail.jsp">Quản lý bài viết</a>
+                                        <div class="dropdown-divider"></div>
+                                    </c:if>
+                                    <a class="dropdown-item" href="LoginController">Đăng xuất</a>
+                                </div>
+                            </li>
                         </c:if>
-                        </li>
+
                         <li class="nav-item active">
                             <a class="nav-link" href="profile.jsp">Tin tức <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Hỏi đáp</a>
+                            <a class="nav-link" href="forum.jsp">Hỏi đáp</a>
                         </li>
-                        
+
                         <c:if test="${sessionScope.data_session == null}">
                             <li class="nav-item">
-                            <a class="nav-link" href="Login.jsp">Đăng nhập</a>
-                        </li>
+                                <a class="nav-link" href="Login.jsp">Đăng nhập</a>
+                            </li>
                         </c:if>
-                       
-                        
+
+
                     </ul>
                     <!-- End Menu -->
                     <!-- Begin Search -->
@@ -83,4 +92,3 @@
         <script src="javaScript/ie10-viewport-bug-workaround.js"></script>
     </body>
 </html>
-

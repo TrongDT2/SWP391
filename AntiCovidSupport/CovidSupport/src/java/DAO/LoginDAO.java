@@ -20,10 +20,10 @@ import model.Account;
  * @author Aur
  */
 public class LoginDAO {
-
+    
     DBContext db;
     Connection conn;
-
+    
     public LoginDAO() {
         try {
             db = new DBContext();
@@ -33,9 +33,9 @@ public class LoginDAO {
             System.out.println("loi " + conn);
         }
     }
-
+    
     public Account Login(String username, String password) {
-
+        
         try {
             String sql = "select * from UserInfo where username = ? and password = ?";
             PreparedStatement stm = conn.prepareStatement(sql);
@@ -52,36 +52,36 @@ public class LoginDAO {
                 a.setEmail(rs.getString("Email"));
                 a.setAddress(rs.getString("Address"));
                 a.setRole_id(rs.getInt("Role_id"));
-
+                a.setDate(rs.getString("Dob"));
                 return a;
             }
-
+            
         } catch (Exception ex) {
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-
+    
     public Account checkAccountExist(String username) {
-
+        
         try {
             String sql = "select username from UserInfo where username = ?";
             PreparedStatement stm = conn.prepareStatement(sql);
             stm.setString(1, username);
-
+            
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Account a = new Account();
                 a.setUsername(username);
                 return a;
             }
-
+            
         } catch (Exception ex) {
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-
+    
     public void register(String username, String password, String email) {
         try {
             String sql = "Insert into UserInfo (Username, Email, Password) values (?,?,?)";
@@ -94,7 +94,7 @@ public class LoginDAO {
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public Account getAllAccount() {
         try {
             String sql = "select * from UserInfo";
@@ -112,7 +112,7 @@ public class LoginDAO {
                 a.setRole_id(rs.getInt("Role_id"));
                 return a;
             }
-
+            
         } catch (Exception ex) {
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

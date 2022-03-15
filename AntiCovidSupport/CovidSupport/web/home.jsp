@@ -26,7 +26,7 @@
     </head>
     <body>
 
-        <%@include file="header.jsp" %>
+        <%@include file="component/header.jsp" %>
 
         <!-- Begin Site Title
         ================================================== -->

@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.sql.Date;
+
 /**
  *
  * @author Aur
@@ -19,11 +21,12 @@ public class Account {
     private String email;
     private String address;
     private int role_id;
+    private String date;
 
     public Account() {
     }
 
-    public Account(int user_id, String username, String password, int phone, String image, String email, String address, int role_id) {
+    public Account(int user_id, String username, String password, int phone, String image, String email, String address, int role_id, String date) {
         this.user_id = user_id;
         this.username = username;
         this.password = password;
@@ -32,6 +35,7 @@ public class Account {
         this.email = email;
         this.address = address;
         this.role_id = role_id;
+        this.date = date;
     }
 
     public int getUser_id() {
@@ -98,5 +102,14 @@ public class Account {
         this.role_id = role_id;
     }
 
-}
+    public String getDate() {
+        return date;
+    }
 
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    
+
+}
