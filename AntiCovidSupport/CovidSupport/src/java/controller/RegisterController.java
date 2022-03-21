@@ -73,7 +73,7 @@ public class RegisterController extends HttpServlet {
             request.setAttribute("message", message);
             request.getRequestDispatcher("register.jsp").forward(request, response);
         } else {
-            UserDAO dao = new UserDAOImpl();
+            UserDAOImpl dao = new UserDAOImpl();
             Account a = dao.checkAccountExist(username);
             if (a == null) {
                 dao.register(username, password, email);

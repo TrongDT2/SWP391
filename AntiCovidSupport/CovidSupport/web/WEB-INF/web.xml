@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
-        <servlet-name>LoginController</servlet-name>
-        <servlet-class>controller.LoginController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>RegisterController</servlet-name>
         <servlet-class>controller.RegisterController</servlet-class>
     </servlet>
@@ -20,9 +16,13 @@
         <servlet-name>UpdateProfileController</servlet-name>
         <servlet-class>controller.UpdateProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>controller.LoginController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
-      <url-pattern>/view/client/news-list</url-pattern>
+        <url-pattern>/view/client/news-list</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
@@ -36,8 +36,10 @@
         <servlet-name>BoardNewDetailController</servlet-name>
         <url-pattern>/view/client/news-list-detail</url-pattern>
     </servlet-mapping>
-   
-   
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern>/LoginController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

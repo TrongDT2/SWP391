@@ -1,4 +1,3 @@
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -12,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.naming.spi.DirStateFactory;
 import model.Account;
 
 /**
@@ -20,7 +18,6 @@ import model.Account;
  * @author Aur
  */
 public class LoginDAO {
-    
     DBContext db;
     Connection conn;
     
@@ -110,6 +107,7 @@ public class LoginDAO {
                 a.setEmail(rs.getString("Email"));
                 a.setAddress(rs.getString("Address"));
                 a.setRole_id(rs.getInt("Role_id"));
+                a.setDate(rs.getString("Dob"));
                 return a;
             }
             

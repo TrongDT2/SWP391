@@ -23,7 +23,7 @@
         <link href="css/mediumish.css" rel="stylesheet">
     </head>
     <body>
-        <%@include file="header.jsp" %>
+        <%@include file="component/header.jsp" %>
        
     </body>
 </html>

@@ -53,10 +53,10 @@ public class UserDAOImpl extends DBContext implements UserDAO {
         try {
             con = getConnection();
             String sql = "select username from UserInfo where username = ?";
-            PreparedStatement stm = con.prepareStatement(sql);
-            stm.setString(1, username);
+            ps = con.prepareStatement(sql);
+            ps.setString(1, username);
 
-            rs = ps.executeQuery();
+             rs = ps.executeQuery();
             while (rs.next()) {
                 Account a = new Account();
                 a.setUsername(username);
@@ -65,11 +65,7 @@ public class UserDAOImpl extends DBContext implements UserDAO {
 
         } catch (Exception ex) {
             Logger.getLogger(UserDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            this.closeResultSet(rs);
-            this.closePreparedStatement(ps);
-            this.closeConnection(con);
-        }
+        } 
         return null;
     }
 
@@ -88,11 +84,7 @@ public class UserDAOImpl extends DBContext implements UserDAO {
             ps.executeUpdate();
         } catch (Exception ex) {
             Logger.getLogger(UserDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            this.closeResultSet(rs);
-            this.closePreparedStatement(ps);
-            this.closeConnection(con);
-        }
+        } 
     }
 
 }
