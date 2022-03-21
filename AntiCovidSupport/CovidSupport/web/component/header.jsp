@@ -3,7 +3,7 @@
     Created on : Mar 3, 2022, 11:04:20 PM
     Author     : Aur
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -36,7 +36,7 @@
                 </a>
                 <!-- End Logo -->
                 <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                    <!-- Begin Menu -->
+                    <!-- Begin Menu } -->
                     <ul class="navbar-nav ml-auto">
                         <c:if test="${sessionScope.data_session != null}">
                             <li class="nav-item dropdown">
@@ -46,7 +46,7 @@
                                     <a class="dropdown-item" href="profile.jsp">Hồ sơ của bạn</a>
                                     <div class="dropdown-divider"></div>
                                     <c:if test="${sessionScope.data_session.role_id == 1}">
-                                        <a class="dropdown-item" href="view/administrator/managerUser.jsp">Quản lý website</a>
+                                        <a class="dropdown-item" href="ManagerAccountController">Quản lý website</a>
                                         <div class="dropdown-divider"></div>
                                     </c:if>
                                     <c:if test="${sessionScope.data_session.role_id  == 2 || sessionScope.data_session.role_id  == 3}">

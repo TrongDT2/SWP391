@@ -20,6 +20,10 @@
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManagerAccountController</servlet-name>
+        <servlet-class>controller.ManagerAccountController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/view/client/news-list</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerAccountController</servlet-name>
+        <url-pattern>/ManagerAccountController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
