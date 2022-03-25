@@ -4,7 +4,6 @@
  */
 package controller;
 
-import DAO.ManagerAccountDAO;
 import impl.UserDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,7 +19,7 @@ import model.Role;
  *
  * @author Aur
  */
-public class ManagerAccountController extends HttpServlet {
+public class EditController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +38,10 @@ public class ManagerAccountController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ManagerAccountController</title>");
+            out.println("<title>Servlet EditController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ManagerAccountController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EditController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,13 +59,13 @@ public class ManagerAccountController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String uName = request.getParameter("uName");
         UserDAOImpl dao = new UserDAOImpl();
-        List<Account> list = dao.getAllAccount();
         List<Role> listRole = dao.getAllRole();
         request.setAttribute("ListRole", listRole);
-        request.setAttribute("ListAccount", list);
-        request.getRequestDispatcher("view/administrator/managerUser.jsp").forward(request, response);
-
+        Account name = dao.getAccountByUsername(uName);
+        request.setAttribute("name", name);
+        request.getRequestDispatcher("view/administrator/editManager.jsp").forward(request, response);
     }
 
     /**
@@ -80,7 +79,16 @@ public class ManagerAccountController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        String username = request.getParameter("username");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String date = request.getParameter("date");
+        String address = request.getParameter("address");
+        String role = request.getParameter("role");
+        UserDAOImpl dao = new UserDAOImpl();
+            dao.EditProfile(address, phone, date, username, role);
+         
+        response.sendRedirect("ManagerAccountController");
     }
 
     /**

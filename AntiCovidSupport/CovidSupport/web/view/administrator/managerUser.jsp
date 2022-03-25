@@ -13,7 +13,8 @@
         <title>JSP Page</title>
         <link href="css/bootstrap2.min.css" rel="stylesheet">
         <link href="css/dashboard.css" rel="stylesheet">
-        <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">   
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">  
+        <script src="https://kit.fontawesome.com/d3c64dc7da.js" crossorigin="anonymous"></script>
     </head>
     <body>
 
@@ -46,8 +47,18 @@
                                         <td>${o.email}</td>
                                         <td>${o.address}</td>
                                         <td>${o.date}</td>
+                                        <td>
+                                            <c:forEach items="${ListRole}" var="c">
+                                                <c:if test="${c.role_id == o.role_id}" >${c.role_name}</c:if>
+                                            </c:forEach>
+                                        </td>
+                                        <td>
+                                            <a href="EditController?uName=${o.username}"><i class="fa-solid fa-pen"></i></a>
+                                            <a href="DeleteController?uName=${o.username}"><i class="fa-regular fa-trash-can"></i></a>
+                                            
+                                        </td>
                                     </tr> 
-                                    
+
                                 </c:forEach>
                             </tbody>
                         </table>

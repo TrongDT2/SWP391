@@ -42,7 +42,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">Hi, ${sessionScope.data_session.username}</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="accountDetail.jsp">Thông tin tài khoản</a>
+                                    <a class="dropdown-item" href="UpdateProfileController">Thông tin tài khoản</a>
                                     <a class="dropdown-item" href="profile.jsp">Hồ sơ của bạn</a>
                                     <div class="dropdown-divider"></div>
                                     <c:if test="${sessionScope.data_session.role_id == 1}">

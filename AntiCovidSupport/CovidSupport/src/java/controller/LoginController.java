@@ -39,7 +39,7 @@ public class LoginController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginController</title>");            
+            out.println("<title>Servlet LoginController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet LoginController at " + request.getContextPath() + "</h1>");
@@ -60,7 +60,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         session.removeAttribute("data_session");
         response.sendRedirect("home.jsp");
     }
@@ -89,6 +89,7 @@ public class LoginController extends HttpServlet {
                 message = "Sai mật khẩu hoặc tên đăng nhập!";
             } else {
                 HttpSession session = request.getSession();
+                session.setAttribute("acc_session", username);
                 session.setAttribute("data_session", acc);
                 request.getRequestDispatcher("home.jsp").forward(request, response);
             }

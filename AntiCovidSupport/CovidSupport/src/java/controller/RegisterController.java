@@ -65,6 +65,9 @@ public class RegisterController extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String rePassword = request.getParameter("rePassword");
+        String phone = request.getParameter("phone");
+        String address = request.getParameter("address");
+        String dob = request.getParameter("dob");
         String success = null;
         String message = null;
 
@@ -76,7 +79,7 @@ public class RegisterController extends HttpServlet {
             UserDAOImpl dao = new UserDAOImpl();
             Account a = dao.checkAccountExist(username);
             if (a == null) {
-                dao.register(username, password, email);
+                dao.register(username, password, email, phone, address, dob);
                 success = "Create account success!";
                 request.setAttribute("success", success);
                 request.getRequestDispatcher("Login.jsp").forward(request, response);

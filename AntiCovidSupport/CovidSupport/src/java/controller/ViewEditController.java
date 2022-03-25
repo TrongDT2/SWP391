@@ -4,7 +4,6 @@
  */
 package controller;
 
-import DAO.ManagerAccountDAO;
 import impl.UserDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,7 +19,7 @@ import model.Role;
  *
  * @author Aur
  */
-public class ManagerAccountController extends HttpServlet {
+public class ViewEditController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +38,10 @@ public class ManagerAccountController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ManagerAccountController</title>");
+            out.println("<title>Servlet ViewEditController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ManagerAccountController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ViewEditController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,13 +59,7 @@ public class ManagerAccountController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        UserDAOImpl dao = new UserDAOImpl();
-        List<Account> list = dao.getAllAccount();
-        List<Role> listRole = dao.getAllRole();
-        request.setAttribute("ListRole", listRole);
-        request.setAttribute("ListAccount", list);
-        request.getRequestDispatcher("view/administrator/managerUser.jsp").forward(request, response);
-
+        
     }
 
     /**
@@ -80,7 +73,7 @@ public class ManagerAccountController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
     }
 
     /**

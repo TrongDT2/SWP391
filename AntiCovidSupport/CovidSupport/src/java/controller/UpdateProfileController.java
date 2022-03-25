@@ -4,13 +4,15 @@
  */
 package controller;
 
-import DAO.UpdateProfileDAO;
+import impl.UserDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Account;
 
 /**
  *
@@ -35,7 +37,7 @@ public class UpdateProfileController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UpdateProfileController</title>");            
+            out.println("<title>Servlet UpdateProfileController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet UpdateProfileController at " + request.getContextPath() + "</h1>");
@@ -56,7 +58,13 @@ public class UpdateProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession(); 
+
+        String username = (String) session.getAttribute("acc_session");
+        UserDAOImpl dao = new UserDAOImpl();
+        Account acc = dao.getAccountByUsername(username);
+        request.setAttribute("acc", acc);
+        request.getRequestDispatcher("accountDetail.jsp").forward(request, response);
     }
 
     /**
@@ -74,16 +82,17 @@ public class UpdateProfileController extends HttpServlet {
         String phone = request.getParameter("phone");
         String date = request.getParameter("date");
         String address = request.getParameter("address");
-        String img = request.getServletContext().getContextPath();
         String message = null;
         String success = null;
-        UpdateProfileDAO dao = new UpdateProfileDAO();
+        UserDAOImpl dao = new UserDAOImpl();
         if (phone.trim().isEmpty() || date.trim().isEmpty() || address.trim().isEmpty()) {
             message = "Thông tin không được để trống";
             request.setAttribute("message", message);
         } else {
 
-            dao.UpdateProfile(address, phone, date, username, img);
+            dao.UpdateProfile(address, phone, date, username);
+            Account acc = dao.getAccountByUsername(username);
+            request.setAttribute("acc", acc);
             success = "Cập nhật thành công";
             request.setAttribute("success", success);
 
