@@ -36,6 +36,30 @@
         <servlet-name>ViewEditController</servlet-name>
         <servlet-class>controller.ViewEditController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AllPost</servlet-name>
+        <servlet-class>controller.AllPost</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addActicle</servlet-name>
+        <servlet-class>controller.addActicle</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetailPost</servlet-name>
+        <servlet-class>controller.DetailPost</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditPost</servlet-name>
+        <servlet-class>controller.EditPost</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListPostController</servlet-name>
+        <servlet-class>controller.ListPostController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditNewsController</servlet-name>
+        <servlet-class>controller.EditNewsController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/view/client/news-list</url-pattern>
@@ -75,6 +99,30 @@
     <servlet-mapping>
         <servlet-name>ViewEditController</servlet-name>
         <url-pattern>/ViewEditController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllPost</servlet-name>
+        <url-pattern>/AllPost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addActicle</servlet-name>
+        <url-pattern>/addActicle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailPost</servlet-name>
+        <url-pattern>/DetailPost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditPost</servlet-name>
+        <url-pattern>/EditPost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListPostController</servlet-name>
+        <url-pattern>/ListPostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditNewsController</servlet-name>
+        <url-pattern>/EditNewsController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

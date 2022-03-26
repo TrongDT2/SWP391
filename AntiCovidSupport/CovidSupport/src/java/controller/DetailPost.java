@@ -7,19 +7,18 @@ package controller;
 import impl.UserDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Account;
-import model.Role;
+import model.Article;
+import model.MessageError;
 
 /**
  *
  * @author Aur
  */
-public class ViewEditController extends HttpServlet {
+public class DetailPost extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +37,10 @@ public class ViewEditController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ViewEditController</title>");            
+            out.println("<title>Servlet DetailPost</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ViewEditController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DetailPost at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,7 +58,10 @@ public class ViewEditController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        int id = Integer.parseInt(request.getParameter("id"));
+        Article art = new UserDAOImpl().getArticlByID(id);
+        request.setAttribute("art", art);
+        request.getRequestDispatcher("view/postView/postDetail.jsp").forward(request, response);
     }
 
     /**
@@ -73,16 +75,43 @@ public class ViewEditController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-    }
+        int id = Integer.parseInt(request.getParameter("id"));
+        String contents = request.getParameter("content");
+        int status = -1;
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
+//
+//    if (author == null || author.isEmpty()) {
+//      request.setAttribute("error", MessageError.ARTICLE_NULL_AUTHOR);
+//            response.sendRedirect("AddActicle");
+//
+//    }
+//
+//    if (topic == null || topic.isEmpty()) {
+//      request.setAttribute("error", MessageError.ARTICLE_NULL_TOPIC);
+//            response.sendRedirect("AddActicle");
+//
+//    }
+        if (contents == null || contents.isEmpty()) {
+            request.setAttribute("error", MessageError.ARTICLE_NULL_CONTENTS);
+            response.sendRedirect("AddActicle");
+
+        }
+        Article thisArt = new Article();
+        thisArt.setId(id);
+        thisArt.setContent(contents);
+        UserDAOImpl articleDao = new UserDAOImpl();
+        articleDao.addArticle(thisArt);;
+        response.sendRedirect("AllPost");
+    
+}
+
+/**
+ * Returns a short description of the servlet.
+ *
+ * @return a String containing servlet description
+ */
+@Override
+        public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

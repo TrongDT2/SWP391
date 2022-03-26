@@ -69,7 +69,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-xs-6">    
+                                <div class="col-xs-6">  
+                                    <label ><h4>Role</h4></label>
                                     <select name="role">
                                         <c:forEach items="${ListRole}" var="c">
                                             <option value="${c.role_id}" <c:if test="${c.role_id == name.role_id}">selected</c:if> >${c.role_name}</option>
