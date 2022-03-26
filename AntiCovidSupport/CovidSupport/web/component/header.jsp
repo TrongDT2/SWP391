@@ -49,8 +49,7 @@
                                         <a class="dropdown-item" href="ManagerAccountController">Quản lý website</a>
                                         <div class="dropdown-divider"></div>
                                     </c:if>
-                                    <c:if test="${sessionScope.data_session.role_id  == 2 || sessionScope.data_session.role_id  == 3}">
-                                        <a class="dropdown-item" href="accountDetail.jsp">Tạo bài viết</a>
+                                    <c:if test="${sessionScope.data_session.role_id  == 2}">
                                         <a class="dropdown-item" href="accountDetail.jsp">Quản lý bài viết</a>
                                         <div class="dropdown-divider"></div>
                                     </c:if>
