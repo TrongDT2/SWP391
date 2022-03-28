@@ -31,7 +31,7 @@
             </button>
             <div class="container">
                 <!-- Begin Logo -->
-                <a class="navbar-brand" href="home.jsp">
+                <a class="navbar-brand" href="homeController">
                     <img src="img/logo1.jpeg" alt="logo">
                 </a>
                 <!-- End Logo -->
@@ -50,7 +50,7 @@
                                         <div class="dropdown-divider"></div>
                                     </c:if>
                                     <c:if test="${sessionScope.data_session.role_id  == 2}">
-                                        <a class="dropdown-item" href="accountDetail.jsp">Quản lý bài viết</a>
+                                        <a class="dropdown-item" href="ListPostController">Quản lý bài viết</a>
                                         <div class="dropdown-divider"></div>
                                     </c:if>
                                     <a class="dropdown-item" href="LoginController">Đăng xuất</a>
@@ -59,7 +59,7 @@
                         </c:if>
 
                         <li class="nav-item active">
-                            <a class="nav-link" href="home.jsp">Tin tức <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="homeController">Tin tức <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="forum.jsp">Hỏi đáp</a>

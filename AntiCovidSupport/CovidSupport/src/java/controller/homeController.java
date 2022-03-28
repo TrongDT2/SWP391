@@ -7,21 +7,18 @@ package controller;
 import impl.UserDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Category;
 import model.News;
 
 /**
  *
  * @author Aur
  */
-public class addNewsController extends HttpServlet {
+public class homeController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +37,10 @@ public class addNewsController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet addNewsController</title>");
+            out.println("<title>Servlet homeController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet addNewsController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet homeController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,9 +59,9 @@ public class addNewsController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserDAOImpl dao = new UserDAOImpl();
-        List<Category> category = dao.getCategory();
-        request.setAttribute("category", category);
-        request.getRequestDispatcher("view/Creator/addNewsManager.jsp").forward(request, response);
+        List<News> list = dao.getAllNews();
+        request.setAttribute("listNew", list);
+        request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 
     /**
@@ -78,33 +75,7 @@ public class addNewsController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd");
-        LocalDate localDate = LocalDate.now();
-        int id = Integer.parseInt(request.getParameter("id"));
-        String title = request.getParameter("title");
-        String image = request.getParameter("image");
-        String date = dtf.format(localDate);
-        int categoryid = Integer.parseInt(request.getParameter("category"));
-        String author = request.getParameter("author");
-        String description = request.getParameter("description");
-        UserDAOImpl dao = new UserDAOImpl();
-        String success = null;
-        try {
-            News n = new News();
-            n.setNews_id(id);
-            n.setTitle(title);
-            n.setImage(image);
-            n.setDate(date);
-            n.setAuthor(author);
-            n.setContent(description);
-            n.setCategory_id(categoryid);
-            dao.insertNewsManager(n);
-            success += "Create success";
-        } catch (Exception ex) {
-            success += "update fail";
-        }
-        request.setAttribute("success", success);
-        response.sendRedirect("ListPostController");
+        processRequest(request, response);
     }
 
     /**

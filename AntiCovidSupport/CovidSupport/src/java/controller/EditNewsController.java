@@ -67,7 +67,7 @@ public class EditNewsController extends HttpServlet {
         List<Category> category = dao.getCategory();
         request.setAttribute("category", category);
         request.setAttribute("news", news);
-        request.getRequestDispatcher("view/administrator/editNewsManager.jsp").forward(request, response);
+        request.getRequestDispatcher("view/Creator/editNewsManager.jsp").forward(request, response);
     }
 
     /**
@@ -116,7 +116,7 @@ public class EditNewsController extends HttpServlet {
         List<Category> category = dao.getCategory();
         request.setAttribute("category", category);
         request.setAttribute("news", news);
-        request.getRequestDispatcher("view/administrator/editNewsManager.jsp").forward(request, response);
+        request.getRequestDispatcher("view/Creator/editNewsManager.jsp").forward(request, response);
     }
 
     /**

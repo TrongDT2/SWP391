@@ -63,7 +63,7 @@ public class ListPostController extends HttpServlet {
         UserDAOImpl dao = new UserDAOImpl();
         List<News> list = dao.getAllNews();
         request.setAttribute("listNews", list);
-        request.getRequestDispatcher("view/administrator/postList.jsp").forward(request, response);
+        request.getRequestDispatcher("view/Creator/postList.jsp").forward(request, response);
     }
 
     /**

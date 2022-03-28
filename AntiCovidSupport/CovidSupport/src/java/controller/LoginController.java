@@ -62,7 +62,7 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.removeAttribute("data_session");
-        response.sendRedirect("home.jsp");
+        response.sendRedirect("homeController");
     }
 
     /**
@@ -91,7 +91,7 @@ public class LoginController extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("acc_session", username);
                 session.setAttribute("data_session", acc);
-                request.getRequestDispatcher("home.jsp").forward(request, response);
+                request.getRequestDispatcher("homeController").forward(request, response);
             }
         } else {
             message = "Sai mật khẩu hoặc tên đăng nhập!";

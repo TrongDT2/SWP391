@@ -3,7 +3,7 @@
     Created on : Mar 10, 2022, 10:39:24 PM
     Author     : Aur
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,6 +17,7 @@
     <body>
        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                     <div class="position-sticky pt-3">
+                        <c:if test="${sessionScope.data_session.role_id == 1}">
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a class="nav-link " aria-current="page" href="ManagerAccountController">
@@ -36,9 +37,9 @@
                                     Products
                                 </a>
                             </li>
-                            
+                        </c:if>
                         </ul>
-
+                            
                         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                             <span class="sidebar-heading divider">________________________________</span>
                             
