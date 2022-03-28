@@ -4,21 +4,23 @@
  */
 package controller;
 
+import DAO.ManagerAccountDAO;
 import impl.UserDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.Account;
+import model.Role;
 
 /**
  *
  * @author Aur
  */
-public class UpdateProfileController extends HttpServlet {
+public class ManagerAccountController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +39,10 @@ public class UpdateProfileController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UpdateProfileController</title>");
+            out.println("<title>Servlet ManagerAccountController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UpdateProfileController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ManagerAccountController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,13 +60,13 @@ public class UpdateProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(); 
-
-        String username = (String) session.getAttribute("acc_session");
         UserDAOImpl dao = new UserDAOImpl();
-        Account acc = dao.getAccountByUsername(username);
-        request.setAttribute("acc", acc);
-        request.getRequestDispatcher("accountDetail.jsp").forward(request, response);
+        List<Account> list = dao.getAllAccount();
+        List<Role> listRole = dao.getAllRole();
+        request.setAttribute("ListRole", listRole);
+        request.setAttribute("ListAccount", list);
+        request.getRequestDispatcher("view/administrator/managerUser.jsp").forward(request, response);
+
     }
 
     /**
@@ -78,26 +80,7 @@ public class UpdateProfileController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String phone = request.getParameter("phone");
-        String date = request.getParameter("date");
-        String address = request.getParameter("address");
-        String message = null;
-        String success = null;
-        UserDAOImpl dao = new UserDAOImpl();
-        if (phone.trim().isEmpty() || date.trim().isEmpty() || address.trim().isEmpty()) {
-            message = "Thông tin không được để trống";
-            request.setAttribute("message", message);
-        } else {
 
-            dao.UpdateProfile(address, phone, date, username);
-            Account acc = dao.getAccountByUsername(username);
-            request.setAttribute("acc", acc);
-            success = "Cập nhật thành công";
-            request.setAttribute("success", success);
-
-        }
-        request.getRequestDispatcher("accountDetail.jsp").forward(request, response);
     }
 
     /**

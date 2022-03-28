@@ -13,12 +13,72 @@
         <servlet-class>controller.BoardNewDetailController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>controller.LoginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManagerAccountController</servlet-name>
+        <servlet-class>controller.ManagerAccountController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>UpdateProfileController</servlet-name>
         <servlet-class>controller.UpdateProfileController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LoginController</servlet-name>
-        <servlet-class>controller.LoginController</servlet-class>
+        <servlet-name>DeleteController</servlet-name>
+        <servlet-class>controller.DeleteController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditController</servlet-name>
+        <servlet-class>controller.EditController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewEditController</servlet-name>
+        <servlet-class>controller.ViewEditController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AllPost</servlet-name>
+        <servlet-class>controller.AllPost</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addActicle</servlet-name>
+        <servlet-class>controller.addActicle</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetailPost</servlet-name>
+        <servlet-class>controller.DetailPost</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditPost</servlet-name>
+        <servlet-class>controller.EditPost</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListPostController</servlet-name>
+        <servlet-class>controller.ListPostController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditNewsController</servlet-name>
+        <servlet-class>controller.EditNewsController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addNewsController</servlet-name>
+        <servlet-class>controller.addNewsController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteNewsController</servlet-name>
+        <servlet-class>controller.DeleteNewsController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MainController</servlet-name>
+        <servlet-class>controller.MainController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChatController</servlet-name>
+        <servlet-class>controller.ChatController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginGoogleController</servlet-name>
+        <servlet-class>controller.LoginGoogleController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -39,6 +99,70 @@
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerAccountController</servlet-name>
+        <url-pattern>/ManagerAccountController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProfileController</servlet-name>
+        <url-pattern>/UpdateProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteController</servlet-name>
+        <url-pattern>/DeleteController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditController</servlet-name>
+        <url-pattern>/EditController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewEditController</servlet-name>
+        <url-pattern>/ViewEditController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllPost</servlet-name>
+        <url-pattern>/AllPost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addActicle</servlet-name>
+        <url-pattern>/addActicle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailPost</servlet-name>
+        <url-pattern>/DetailPost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditPost</servlet-name>
+        <url-pattern>/EditPost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListPostController</servlet-name>
+        <url-pattern>/ListPostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditNewsController</servlet-name>
+        <url-pattern>/EditNewsController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addNewsController</servlet-name>
+        <url-pattern>/addNewsController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteNewsController</servlet-name>
+        <url-pattern>/DeleteNewsController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainController</servlet-name>
+        <url-pattern>/MainController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChatController</servlet-name>
+        <url-pattern>/ChatController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginGoogleController</servlet-name>
+        <url-pattern>/login-google</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

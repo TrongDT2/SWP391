@@ -7,18 +7,21 @@ package controller;
 import impl.UserDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Account;
+import model.Category;
+import model.News;
 
 /**
  *
  * @author Aur
  */
-public class UpdateProfileController extends HttpServlet {
+public class EditNewsController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +40,10 @@ public class UpdateProfileController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UpdateProfileController</title>");
+            out.println("<title>Servlet EditNewsController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UpdateProfileController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EditNewsController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,13 +61,13 @@ public class UpdateProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(); 
-
-        String username = (String) session.getAttribute("acc_session");
+        String newid = request.getParameter("newid");
         UserDAOImpl dao = new UserDAOImpl();
-        Account acc = dao.getAccountByUsername(username);
-        request.setAttribute("acc", acc);
-        request.getRequestDispatcher("accountDetail.jsp").forward(request, response);
+        News news = dao.GetNewsById(newid);
+        List<Category> category = dao.getCategory();
+        request.setAttribute("category", category);
+        request.setAttribute("news", news);
+        request.getRequestDispatcher("view/administrator/editNewsManager.jsp").forward(request, response);
     }
 
     /**
@@ -78,26 +81,42 @@ public class UpdateProfileController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String phone = request.getParameter("phone");
-        String date = request.getParameter("date");
-        String address = request.getParameter("address");
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd");
+        LocalDate localDate = LocalDate.now();
+
+        int newid = Integer.parseInt(request.getParameter("id"));
+        String title = request.getParameter("title");
+        String image = request.getParameter("image");
+        String date = dtf.format(localDate);
+        int categoryid = Integer.parseInt(request.getParameter("category"));
+        String author = request.getParameter("author");
+        String description = request.getParameter("description");
         String message = null;
         String success = null;
         UserDAOImpl dao = new UserDAOImpl();
-        if (phone.trim().isEmpty() || date.trim().isEmpty() || address.trim().isEmpty()) {
-            message = "Thông tin không được để trống";
-            request.setAttribute("message", message);
-        } else {
+        try {
+            News n = new News();
+            n.setTitle(title);
+            n.setImage(image);
+            n.setDate(date);
+            n.setAuthor(author);
+            n.setContent(description);
+            n.setNews_id(newid);
+            n.setCategory_id(categoryid);
 
-            dao.UpdateProfile(address, phone, date, username);
-            Account acc = dao.getAccountByUsername(username);
-            request.setAttribute("acc", acc);
+            dao.EditNewsManager(n);
             success = "Cập nhật thành công";
-            request.setAttribute("success", success);
 
+        } catch (Exception ex) {
+            success += "update fail";
         }
-        request.getRequestDispatcher("accountDetail.jsp").forward(request, response);
+        request.setAttribute("success", success);
+        News news = dao.GetNewsById(String.valueOf(newid));
+        List<Category> category = dao.getCategory();
+        request.setAttribute("category", category);
+        request.setAttribute("news", news);
+        request.getRequestDispatcher("view/administrator/editNewsManager.jsp").forward(request, response);
     }
 
     /**

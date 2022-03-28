@@ -38,12 +38,12 @@
 
 
                             <div class="text-center">
-                                <c:if test="${sessionScope.data_session.image == null}">
+                                
                                 <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-                                </c:if>
-                                <c:if test="${sessionScope.data_session.image != null}">
-                                <img src="${sessionScope.data_session.image}" class="avatar img-circle img-thumbnail" alt="avatar">
-                                </c:if>
+                                
+                                
+                                <img src="#" class="avatar img-circle img-thumbnail" alt="avatar">
+                               
                                 <h6>Upload a different photo...</h6>
                                 <input type="file" class="text-center center-block file-upload" name="img" accept="image/*">
                             </div></hr><br>
@@ -81,7 +81,7 @@
                                     <c:if test="${message != null}">
                                         <h6 style="color: red;">${message}</h6>
                                     </c:if>
-                                    <form class="form" action="UpdateProfileController" method="post" id="registrationForm">
+                                    <form class="form" action="UpdateProfileController" method="post">
                                         <div class="form-group">
 
                                             <div class="col-xs-6">
@@ -89,12 +89,12 @@
                                                 <input type="text" class="form-control" name="username" id="first_name" value="${sessionScope.data_session.username}" title="enter your first name if any." readonly="">
                                             </div>
                                         </div>
-
+                                                <c:if test="${acc != null}">
                                         <div class="form-group">
 
                                             <div class="col-xs-6">
                                                 <label for="email"><h4>Email</h4></label>
-                                                <input type="email" class="form-control" name="email" id="email"  title="enter your email." value="${sessionScope.data_session.email}" readonly="">
+                                                <input type="email" class="form-control" name="email" id="email"  title="enter your email." value="${acc.email}" readonly="">
                                             </div>
                                         </div>
 
@@ -103,7 +103,7 @@
 
                                             <div class="col-xs-6">
                                                 <label for="phone"><h4>Số điện thoại </h4></label>
-                                                <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any." value="${sessionScope.data_session.phone}">
+                                                <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any." value="${acc.phone}">
                                             </div>
                                         </div>
 
@@ -111,7 +111,7 @@
 
                                             <div class="col-xs-6">
                                                 <label for="phone"><h4>Ngày sinh</h4></label>
-                                                <input type="date" class="form-control" name="date" id="book_date" value="${sessionScope.data_session.date}"/>
+                                                <input type="date" class="form-control" name="date" id="book_date" value="${acc.date}"/>
                                             </div>
                                         </div>
 
@@ -119,10 +119,10 @@
 
                                             <div class="col-xs-6">
                                                 <label for="email"><h4>Location</h4></label>
-                                                <textarea rows="9" cols="70" class="form-control" id="location" title="enter a location" name="address" >${sessionScope.data_session.address}</textarea> 
+                                                <textarea rows="9" cols="70" class="form-control" id="location" title="enter a location" name="address" >${acc.address}</textarea> 
                                             </div>
                                         </div>
-
+                                            </c:if>
 
                                         <div class="form-group">
                                             <div class="col-xs-12">

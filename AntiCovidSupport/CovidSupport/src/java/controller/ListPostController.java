@@ -4,21 +4,23 @@
  */
 package controller;
 
+import dao.UserDAO;
 import impl.UserDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Account;
+import model.News;
 
 /**
  *
  * @author Aur
  */
-public class UpdateProfileController extends HttpServlet {
+public class ListPostController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +39,10 @@ public class UpdateProfileController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UpdateProfileController</title>");
+            out.println("<title>Servlet ListPostController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UpdateProfileController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ListPostController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,13 +60,10 @@ public class UpdateProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(); 
-
-        String username = (String) session.getAttribute("acc_session");
         UserDAOImpl dao = new UserDAOImpl();
-        Account acc = dao.getAccountByUsername(username);
-        request.setAttribute("acc", acc);
-        request.getRequestDispatcher("accountDetail.jsp").forward(request, response);
+        List<News> list = dao.getAllNews();
+        request.setAttribute("listNews", list);
+        request.getRequestDispatcher("view/administrator/postList.jsp").forward(request, response);
     }
 
     /**
@@ -78,26 +77,7 @@ public class UpdateProfileController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String phone = request.getParameter("phone");
-        String date = request.getParameter("date");
-        String address = request.getParameter("address");
-        String message = null;
-        String success = null;
-        UserDAOImpl dao = new UserDAOImpl();
-        if (phone.trim().isEmpty() || date.trim().isEmpty() || address.trim().isEmpty()) {
-            message = "Thông tin không được để trống";
-            request.setAttribute("message", message);
-        } else {
-
-            dao.UpdateProfile(address, phone, date, username);
-            Account acc = dao.getAccountByUsername(username);
-            request.setAttribute("acc", acc);
-            success = "Cập nhật thành công";
-            request.setAttribute("success", success);
-
-        }
-        request.getRequestDispatcher("accountDetail.jsp").forward(request, response);
+        
     }
 
     /**

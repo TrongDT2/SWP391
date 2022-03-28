@@ -304,7 +304,7 @@
                         </div>
                     </div>
                     <!-- end post -->
-
+                    
                     <!-- begin post -->
                     <div class="card">
                         <a href="post.html">
@@ -353,6 +353,9 @@
         <!-- Bootstrap core JavaScript
             ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
+        <!-- Messenger Plugin chat Code -->
+
+
         
     </body>
 </html>

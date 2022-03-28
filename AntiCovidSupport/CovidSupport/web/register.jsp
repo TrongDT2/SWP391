@@ -46,7 +46,9 @@
                 <input type="email" id="user-email" class="form-control" placeholder="Email address" name="email" >
                 <input type="password" id="user-pass" class="form-control" placeholder="Password" name="password">
                 <input type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" name="rePassword">
-
+                <input type="text" id="user-name" class="form-control" placeholder="Phone" name="phone">
+                <input type="text" id="user-name" class="form-control" placeholder="Address" name="address">
+                <input type="date" class="form-control" id="book_date" name="dob"/>
                 <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
                 <a href="Login.jsp" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
             </form>

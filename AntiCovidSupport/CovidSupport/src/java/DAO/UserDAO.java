@@ -13,5 +13,5 @@ public interface UserDAO {
 
     public Account checkAccountExist(String username);
 
-    public void register(String username, String password, String email);
+    public void register(String username, String password, String email, String phone, String address, String dob);
 }

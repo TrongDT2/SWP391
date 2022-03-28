@@ -11,14 +11,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Account;
+import model.Article;
+import model.MessageError;
 
 /**
  *
  * @author Aur
  */
-public class UpdateProfileController extends HttpServlet {
+public class EditPost extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +37,10 @@ public class UpdateProfileController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UpdateProfileController</title>");
+            out.println("<title>Servlet EditPost</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UpdateProfileController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EditPost at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,13 +58,10 @@ public class UpdateProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(); 
-
-        String username = (String) session.getAttribute("acc_session");
-        UserDAOImpl dao = new UserDAOImpl();
-        Account acc = dao.getAccountByUsername(username);
-        request.setAttribute("acc", acc);
-        request.getRequestDispatcher("accountDetail.jsp").forward(request, response);
+         int id = Integer.parseInt(request.getParameter("id"));
+        Article art = new UserDAOImpl().getArticlByID(id);
+              request.setAttribute("art", art);
+         request.getRequestDispatcher("EditPost.jsp").forward(request, response);
     }
 
     /**
@@ -78,26 +75,39 @@ public class UpdateProfileController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String phone = request.getParameter("phone");
-        String date = request.getParameter("date");
-        String address = request.getParameter("address");
-        String message = null;
-        String success = null;
-        UserDAOImpl dao = new UserDAOImpl();
-        if (phone.trim().isEmpty() || date.trim().isEmpty() || address.trim().isEmpty()) {
-            message = "Thông tin không được để trống";
-            request.setAttribute("message", message);
-        } else {
+         int id = Integer.parseInt(request.getParameter("id"));
+    String contents = request.getParameter("content");
+    int status = -1;
+    
 
-            dao.UpdateProfile(address, phone, date, username);
-            Account acc = dao.getAccountByUsername(username);
-            request.setAttribute("acc", acc);
-            success = "Cập nhật thành công";
-            request.setAttribute("success", success);
+    
+//
+//    if (author == null || author.isEmpty()) {
+//      request.setAttribute("error", MessageError.ARTICLE_NULL_AUTHOR);
+//            response.sendRedirect("AddActicle");
+//
+//    }
+//
+//    if (topic == null || topic.isEmpty()) {
+//      request.setAttribute("error", MessageError.ARTICLE_NULL_TOPIC);
+//            response.sendRedirect("AddActicle");
+//
+//    }
+    if (contents == null || contents.isEmpty()) {
+      request.setAttribute("error", MessageError.ARTICLE_NULL_CONTENTS);
+            response.sendRedirect("AddActicle");
 
-        }
-        request.getRequestDispatcher("accountDetail.jsp").forward(request, response);
+    }
+    String title = request.getParameter("title");
+    String author = request.getParameter("author");
+    Article thisArt = new Article();
+    thisArt.setId(id);
+    thisArt.setContent(contents);
+    thisArt.setTitle(title);
+    thisArt.setAuthor(author);
+        UserDAOImpl articleDao = new UserDAOImpl();
+    articleDao.updateArticle(thisArt);;
+    response.sendRedirect("AllPost");
     }
 
     /**

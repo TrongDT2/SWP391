@@ -3,7 +3,7 @@
     Created on : Mar 3, 2022, 11:04:20 PM
     Author     : Aur
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -36,21 +36,20 @@
                 </a>
                 <!-- End Logo -->
                 <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                    <!-- Begin Menu -->
+                    <!-- Begin Menu } -->
                     <ul class="navbar-nav ml-auto">
                         <c:if test="${sessionScope.data_session != null}">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">Hi, ${sessionScope.data_session.username}</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="accountDetail.jsp">Thông tin tài khoản</a>
+                                    <a class="dropdown-item" href="UpdateProfileController">Thông tin tài khoản</a>
                                     <a class="dropdown-item" href="profile.jsp">Hồ sơ của bạn</a>
                                     <div class="dropdown-divider"></div>
                                     <c:if test="${sessionScope.data_session.role_id == 1}">
-                                        <a class="dropdown-item" href="view/administrator/managerUser.jsp">Quản lý website</a>
+                                        <a class="dropdown-item" href="ManagerAccountController">Quản lý website</a>
                                         <div class="dropdown-divider"></div>
                                     </c:if>
-                                    <c:if test="${sessionScope.data_session.role_id  == 2 || sessionScope.data_session.role_id  == 3}">
-                                        <a class="dropdown-item" href="accountDetail.jsp">Tạo bài viết</a>
+                                    <c:if test="${sessionScope.data_session.role_id  == 2}">
                                         <a class="dropdown-item" href="accountDetail.jsp">Quản lý bài viết</a>
                                         <div class="dropdown-divider"></div>
                                     </c:if>
@@ -60,7 +59,7 @@
                         </c:if>
 
                         <li class="nav-item active">
-                            <a class="nav-link" href="profile.jsp">Tin tức <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="home.jsp">Tin tức <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="forum.jsp">Hỏi đáp</a>
