@@ -7,6 +7,8 @@ package controller;
 import impl.UserDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -79,30 +81,42 @@ public class EditNewsController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd");
+        LocalDate localDate = LocalDate.now();
+
         int newid = Integer.parseInt(request.getParameter("id"));
         String title = request.getParameter("title");
         String image = request.getParameter("image");
-        String date = request.getParameter("date");
-        int category = Integer.parseInt(request.getParameter("category"));
+        String date = dtf.format(localDate);
+        int categoryid = Integer.parseInt(request.getParameter("category"));
         String author = request.getParameter("author");
         String description = request.getParameter("description");
         String message = null;
         String success = null;
         UserDAOImpl dao = new UserDAOImpl();
-        News n = new News();
-        n.setTitle(title);
-        n.setImage(image);
-        n.setDate(date);
-        n.setAuthor(author);
-        n.setContent(description);
-        n.setNews_id(newid);
-        n.setCategory_id(category);
-        if (n != null) {
+        try {
+            News n = new News();
+            n.setTitle(title);
+            n.setImage(image);
+            n.setDate(date);
+            n.setAuthor(author);
+            n.setContent(description);
+            n.setNews_id(newid);
+            n.setCategory_id(categoryid);
+
             dao.EditNewsManager(n);
             success = "Cập nhật thành công";
-            request.setAttribute("success", success);
+
+        } catch (Exception ex) {
+            success += "update fail";
         }
-request.getRequestDispatcher("view/administrator/editNewsManager.jsp").forward(request, response);
+        request.setAttribute("success", success);
+        News news = dao.GetNewsById(String.valueOf(newid));
+        List<Category> category = dao.getCategory();
+        request.setAttribute("category", category);
+        request.setAttribute("news", news);
+        request.getRequestDispatcher("view/administrator/editNewsManager.jsp").forward(request, response);
     }
 
     /**

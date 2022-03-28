@@ -24,7 +24,10 @@
 
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                     <h2>Post List</h2>
-                    <button type="button" class="btn btn-success" onclick="window.location.href='EditNewsController';"><i class="fa-solid fa-plus"></i> Create News</button>
+                    <button type="button" class="btn btn-success" onclick="window.location.href = 'addNewsController';"><i class="fa-solid fa-plus"></i> Create News</button>
+                    <c:if test="${success!= null}">
+                        <h6 style="color: green;">${success}</h6>
+                    </c:if>
                     <div class="table-responsive">
                         <table class="table table-striped table-sm">
                             <thead>
@@ -42,7 +45,7 @@
                                         <td>${o.title}</td>
                                         <td>${o.date}</td>
                                         <td>${o.author}</td>
-                                         <td>
+                                        <td>
                                             <a href="EditNewsController?newid=${o.news_id}"><i class="fa-solid fa-pen"></i></a>
                                             &nbsp; &nbsp;
                                             <a href="DeleteNewsController?newid=${o.news_id}"><i class="fa-regular fa-trash-can"></i></a>

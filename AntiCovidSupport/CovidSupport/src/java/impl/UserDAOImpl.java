@@ -25,11 +25,11 @@ import model.News;
 import model.Role;
 
 public class UserDAOImpl extends DBContext implements UserDAO {
-    
+
     Connection con = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    
+
     @Override
     public Account login(String username, String password) {
         Connection con = null;
@@ -55,13 +55,13 @@ public class UserDAOImpl extends DBContext implements UserDAO {
                 a.setDate(rs.getString("Dob"));
                 return a;
             }
-            
+
         } catch (Exception ex) {
             Logger.getLogger(UserDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-    
+
     @Override
     public Account checkAccountExist(String username) {
         Connection con = null;
@@ -72,23 +72,23 @@ public class UserDAOImpl extends DBContext implements UserDAO {
             String sql = "select username from UserInfo where username = ?";
             ps = con.prepareStatement(sql);
             ps.setString(1, username);
-            
+
             rs = ps.executeQuery();
             while (rs.next()) {
                 Account a = new Account();
                 a.setUsername(username);
                 return a;
             }
-            
+
         } catch (Exception ex) {
             Logger.getLogger(UserDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-    
+
     @Override
     public void register(String username, String password, String email, String phone, String address, String dob) {
-        
+
         try {
             con = getConnection();
             String sql = "Insert into UserInfo (Username, Email, Password, Phone, Address, Dob) values (?,?,?,?,?,?)";
@@ -104,10 +104,10 @@ public class UserDAOImpl extends DBContext implements UserDAO {
             Logger.getLogger(UserDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public List<Account> getAllAccount() {
         List<Account> list = new ArrayList<>();
-        
+
         try {
             String sql = "select User_id,Username,Phone,Email,Address,Dob,Role_id from UserInfo";
             con = new DBContext().getConnection();
@@ -129,9 +129,9 @@ public class UserDAOImpl extends DBContext implements UserDAO {
         }
         return list;
     }
-    
+
     public void UpdateProfile(String address, String phone, String date, String username) {
-        
+
         try {
             con = new DBContext().getConnection();
             String sql = "update UserInfo set Address=?, Phone= ?, Dob=? where Username=?";
@@ -141,14 +141,14 @@ public class UserDAOImpl extends DBContext implements UserDAO {
             ps.setString(3, date);
             ps.setString(4, username);
             ps.executeUpdate();
-            
+
         } catch (Exception ex) {
             Logger.getLogger(UserDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public Account getAccountByUsername(String username) {
-        
+
         try {
             String sql = "select * from UserInfo where Username = ? ";
             con = new DBContext().getConnection();
@@ -171,7 +171,7 @@ public class UserDAOImpl extends DBContext implements UserDAO {
         }
         return null;
     }
-    
+
     public List<Role> getAllRole() {
         List<Role> list = new ArrayList<>();
         try {
@@ -190,23 +190,23 @@ public class UserDAOImpl extends DBContext implements UserDAO {
         }
         return list;
     }
-    
+
     public void Delete(String username) {
-        
+
         try {
             con = new DBContext().getConnection();
             String sql = "delete from UserInfo  where  username = ?";
             ps = con.prepareStatement(sql);
             ps.setString(1, username);
             ps.executeUpdate();
-            
+
         } catch (Exception ex) {
             Logger.getLogger(UserDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void EditProfile(String address, String phone, String date, String username, String role) {
-        
+
         try {
             con = new DBContext().getConnection();
             String sql = "update UserInfo set Address=?, Phone= ?, Dob=?, Role_id =? where Username=?";
@@ -217,15 +217,15 @@ public class UserDAOImpl extends DBContext implements UserDAO {
             ps.setString(4, role);
             ps.setString(5, username);
             ps.executeUpdate();
-            
+
         } catch (Exception ex) {
             Logger.getLogger(UserDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public ArrayList<Article> getAllArticles() {
         ArrayList<Article> listArticle = new ArrayList<Article>();
-        
+
         DBContext db = new DBContext();
         try {
             con = new DBContext().getConnection();
@@ -246,7 +246,7 @@ public class UserDAOImpl extends DBContext implements UserDAO {
                 article.setDate(rs.getString("Date"));
                 article.setTitle(rs.getString("title"));
                 article.setAuthor(rs.getString("author"));
-                
+
                 listArticle.add(article);
             }
             rs.close();
@@ -256,9 +256,9 @@ public class UserDAOImpl extends DBContext implements UserDAO {
         }
         return listArticle;
     }
-    
+
     public void addArticle(Article art) {
-        
+
         DBContext db = new DBContext();
         try {
             String sql = "INSERT INTO [dbo].[News]\n"
@@ -268,46 +268,46 @@ public class UserDAOImpl extends DBContext implements UserDAO {
             stmt.setString(1, art.getTitle());
             stmt.setString(2, art.getAuthor());
             stmt.setString(3, art.getContent());
-            
+
             stmt.executeUpdate();
             stmt.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     public boolean deleteArtById(int id) {
         DBContext db = new DBContext();
         try {
             String sql = "DELETE FROM [dbo].[News]\n"
                     + "      WHERE [News_id] = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
-            
+
             stmt.setInt(1, id);
             return stmt.execute();
         } catch (SQLException ex) {
         }
         return false;
-        
+
     }
-    
+
     public Article getArticlByID(int id) {
         Article article = new Article();
         String query = "SELECT * FROM dbo.News WHERE [News_id] = " + id;
-        
+
         try {
             con = new DBContext().getConnection();
             ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                
+
                 article.setId(Integer.parseInt(rs.getString("News_id")));
                 article.setContent(rs.getString("Content"));
                 article.setImage(rs.getString("Image"));
                 article.setDate(rs.getString("Date"));
                 article.setTitle(rs.getString("title"));
                 article.setAuthor(rs.getString("author"));
-                
+
             }
             rs.close();
             ps.close();
@@ -316,9 +316,9 @@ public class UserDAOImpl extends DBContext implements UserDAO {
         }
         return article;
     }
-    
+
     public void updateArticle(Article art) {
-        
+
         DBContext db = new DBContext();
         try {
             String sql = "UPDATE [dbo].[News]\n"
@@ -337,7 +337,7 @@ public class UserDAOImpl extends DBContext implements UserDAO {
             e.printStackTrace();
         }
     }
-    
+
     public List<News> getAllNews() {
         List<News> list = new ArrayList<>();
         try {
@@ -361,9 +361,9 @@ public class UserDAOImpl extends DBContext implements UserDAO {
         }
         return list;
     }
-    
+
     public News GetNewsById(String id) {
-        
+
         try {
             con = new DBContext().getConnection();
             String sql = "select * from News where News_id =?";
@@ -386,9 +386,9 @@ public class UserDAOImpl extends DBContext implements UserDAO {
         }
         return null;
     }
-    
+
     public void EditNewsManager(News n) {
-        
+
         try {
             con = new DBContext().getConnection();
             String sql = "update News set Content = ?, Image = ?, Date = ?, Category_id = ?, title = ?, author = ? where News_id =?";
@@ -401,12 +401,13 @@ public class UserDAOImpl extends DBContext implements UserDAO {
             ps.setString(6, n.getAuthor());
             ps.setInt(7, n.getNews_id());
             ps.executeUpdate();
-            
+
         } catch (Exception ex) {
             Logger.getLogger(UserDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+
         }
     }
-    
+
     public List<Category> getCategory() {
         List<Category> list = new ArrayList<>();
         try {
@@ -424,5 +425,41 @@ public class UserDAOImpl extends DBContext implements UserDAO {
             Logger.getLogger(UserDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+    }
+
+    public void insertNewsManager(News n) {
+
+        try {
+            con = new DBContext().getConnection();
+            String sql = "insert into News(News_id,Content,Image,Date,Category_id,title,author) values (?,?,?,?,?,?,?)";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, n.getNews_id());
+            ps.setString(2, n.getContent());
+            ps.setString(3, n.getImage());
+            ps.setString(4, n.getDate());
+            ps.setInt(5, n.getCategory_id());
+            ps.setString(6, n.getTitle());
+            ps.setString(7, n.getAuthor());
+
+            ps.executeUpdate();
+
+        } catch (Exception ex) {
+            Logger.getLogger(UserDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+    }
+
+    public void DeleteNews(String id) {
+
+        try {
+            con = new DBContext().getConnection();
+            String sql = "delete from News  where  News_id = ?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, id);
+            ps.executeUpdate();
+
+        } catch (Exception ex) {
+            Logger.getLogger(UserDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
