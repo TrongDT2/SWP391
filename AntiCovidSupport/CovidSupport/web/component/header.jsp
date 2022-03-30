@@ -42,32 +42,33 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">Hi, ${sessionScope.data_session.username}</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="UpdateProfileController">Thông tin tài khoản</a>
-                                    <a class="dropdown-item" href="profile.jsp">Hồ sơ của bạn</a>
+                                    <a class="dropdown-item" href="UpdateProfileController">User Information</a>
+                                    
                                     <div class="dropdown-divider"></div>
                                     <c:if test="${sessionScope.data_session.role_id == 1}">
-                                        <a class="dropdown-item" href="ManagerAccountController">Quản lý website</a>
+                                        <a class="dropdown-item" href="ManagerAccountController">Manager website</a>
                                         <div class="dropdown-divider"></div>
                                     </c:if>
                                     <c:if test="${sessionScope.data_session.role_id  == 2}">
-                                        <a class="dropdown-item" href="ListPostController">Quản lý bài viết</a>
+                                        <a class="dropdown-item" href="ListPostController">Manager News</a>
                                         <div class="dropdown-divider"></div>
                                     </c:if>
-                                    <a class="dropdown-item" href="LoginController">Đăng xuất</a>
+                                    <a class="dropdown-item" href="LoginController">Logout</a>
                                 </div>
                             </li>
                         </c:if>
 
                         <li class="nav-item active">
-                            <a class="nav-link" href="homeController">Tin tức <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="homeController">News <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="forum.jsp">Hỏi đáp</a>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="home">Post<span class="sr-only">(current)</span></a>
                         </li>
+                        
 
                         <c:if test="${sessionScope.data_session == null}">
                             <li class="nav-item">
-                                <a class="nav-link" href="Login.jsp">Đăng nhập</a>
+                                <a class="nav-link" href="Login.jsp">Login</a>
                             </li>
                         </c:if>
 

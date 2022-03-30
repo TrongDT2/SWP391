@@ -1,0 +1,166 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+
+.register-container{
+    border: 1px solid lightgray;
+    width: 50%;
+    margin: 0 auto;
+    box-shadow: 0 0 10px lightgray;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.form-title{
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+
+.register-form{
+    padding: 20px;
+}
+
+.form-group{
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-control{
+    padding: 8px 12px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    outline: none;
+    margin: 5px 0;
+    background-color: #eee;
+    border-color: #212529;
+}
+
+.input-group{
+    display: flex;
+    flex-direction: column;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.input-group label{
+    font-weight: bold;
+    margin-right: 25px;
+}
+
+.width-100{
+    width: 100%;
+}
+
+.input-100{
+    width: calc(100% - 24px);
+}
+
+.cursor-context{
+    cursor: context-menu;
+}
+
+.btn-long{
+    margin-top: 30px;
+    margin-bottom: 10px;
+    width: 45%;
+}
+
+
+.dropdown{
+    background-color: #198754 !important;
+    color: #000 !important;
+    box-shadow: 0 2px 10px lightgray !important;
+    border-radius: 10px;
+    animation: drop-down 0.2s;
+    transform-origin: top;
+    display: none;
+}
+
+@keyframes drop-down {
+    from {
+        opacity: 0;
+        transform: scaleY(0.6);
+    }
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+.list-items{
+    padding: 10px 40px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.list-items:hover{
+    background-color: #cccccc;
+}
+
+input[type = "number"]{
+    width: 415px;
+}
+#term{
+    display: none;
+}
+
+.overlay-form, .overlay{
+    position: absolute; 
+    top:0; 
+    bottom: 0; 
+    left: 0; 
+    right: 0
+}
+.text-form, #message-box{
+    animation: fade-in 0.3s;
+}
+
+#message-box{
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    right: 20%;
+    bottom: 70%;
+    border: 1px solid;
+    border-radius: 7px;
+    border-color: #212529;
+    background-color: #eee;
+    box-shadow: 0 0 10px #999999;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: scale(0.6);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.img-select:hover{
+    text-decoration: underline !important;
+}
+
+.btn{
+    padding: 7px 30px; 
+    border: none;
+    margin: 0 10px;
+}
+.btn-danger{
+    color: #fff; 
+    background-color: #ff3333;
+}
+.btn-danger:hover{
+    background-color: #ff3366;
+}
+
+.btn-success:hover{
+    background-color: #99ff99 !important;
+}

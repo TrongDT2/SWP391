@@ -16,6 +16,7 @@
         <script src="https://kit.fontawesome.com/d3c64dc7da.js" crossorigin="anonymous"></script>
     </head>
     <body>
+        <c:if test="${sessionScope.data_session.role_id == 1 || sessionScope.data_session.role_id == 2}">
         <%@include file="../../component/headerAdmin.jsp" %>
         <div class="container-fluid">
             <div class="row">
@@ -49,13 +50,7 @@
                                 <input type="text" class="form-control" name="image" id="phone" value="${news.image}">
                             </div>
                         </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label ><h4>Author</h4></label>
-                                <input type="text" class="form-control" name="author" id="phone" value="${news.author}">
-                            </div>
-                        </div>
+                        
                         <div class="form-group">
                             <div class="col-xs-6">  
                                 <label ><h4>Category</h4></label>
@@ -84,7 +79,7 @@
                 </main>
             </div>
         </div>
-
+        </c:if>
         <script src="javaScript/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
         <script src="javaScript/dashboard.js"></script>

@@ -48,32 +48,34 @@
                 </div>
                 <div class="card-columns listfeaturedtag">
 
-                     <c:forEach items="${listNew}" var="c">
-                    <div class="card">
-                        <div class="row">
-                            <div class="col-md-5 wrapthumbnail">
-                                <a href="post.html">
-                                    <div class="thumbnail" style="background-image:url(${c.image});">
+                    <c:forEach items="${listNew}" var="c">
+                        <c:if test="${c.status == 1}">
+                            <div class="card">
+                                <div class="row">
+                                    <div class="col-md-5 wrapthumbnail">
+                                        <a href="postDetail?id=${c.news_id}">
+                                            <div class="thumbnail" style="background-image:url(${c.image});">
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
-                            <div class="col-md-7">
-                                <div class="card-block">
-                                    <h2 class="card-title"><a href="">${c.title}</a></h2>
-                                    <h4 class="card-text">${c.content}</h4>
-                                    <div class="metafooter">
-                                        <div class="wrapfooter">
+                                    <div class="col-md-7">
+                                        <div class="card-block">
+                                            <h2 class="card-title"><a href="">${c.title}</a></h2>
+                                            <h4 class="card-text">${c.content}</h4>
+                                            <div class="metafooter">
+                                                <div class="wrapfooter">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <!-- end post -->
+                            <!-- end post -->
+                        </c:if>
                     </c:forEach>
 
-                    
-                   
+
+
 
                 </div>
             </section>
@@ -207,7 +209,7 @@
                         </div>
                     </div>
                     <!-- end post -->
-                    
+
                     <!-- begin post -->
                     <div class="card">
                         <a href="post.html">
@@ -231,7 +233,9 @@
                         </div>
                     </div>
                     <!-- end post -->
-
+                    
+                       
+                    
                 </div>
             </section>
             <!-- End List Posts
@@ -259,7 +263,7 @@
         <!-- Messenger Plugin chat Code -->
 
 
-        
+
     </body>
 </html>
 

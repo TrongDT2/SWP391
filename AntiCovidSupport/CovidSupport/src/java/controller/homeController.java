@@ -75,7 +75,10 @@ public class homeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       UserDAOImpl dao = new UserDAOImpl();
+        List<News> list = dao.getAllNews();
+        request.setAttribute("listNew", list);
+        request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 
     /**

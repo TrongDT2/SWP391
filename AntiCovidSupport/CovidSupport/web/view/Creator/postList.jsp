@@ -17,7 +17,7 @@
     </head>
     <body>
         <%@include file="../../component/headerAdmin.jsp" %>
-
+<c:if test="${sessionScope.data_session.role_id == 1 || sessionScope.data_session.role_id == 2}">
         <div class="container-fluid">
             <div class="row">
                 <%@include file="../../component/sidebar.jsp" %>
@@ -36,22 +36,33 @@
                                     <th scope="col">Title</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Author</th>
+                                    <th scope="col">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <c:forEach items="${listNews}" var="o">
+                                    <c:if test="${sessionScope.data_session.username == o.author}">
                                     <tr>
                                         <td>${o.news_id}</td>
                                         <td>${o.title}</td>
                                         <td>${o.date}</td>
                                         <td>${o.author}</td>
+                                        
+                                        <td>
+                                            <c:if test="${o.status == 0 || o.status == 2}">
+                                                <p style="color: red">Pending</p>
+                                            </c:if>
+                                            <c:if test="${o.status == 1}">
+                                                <p style="color: green">Accept</p>
+                                            </c:if>
+                                        </td>
                                         <td>
                                             <a href="EditNewsController?newid=${o.news_id}"><i class="fa-solid fa-pen"></i></a>
                                             &nbsp; &nbsp;
                                             <a href="DeleteNewsController?newid=${o.news_id}"><i class="fa-regular fa-trash-can"></i></a>
                                         </td>
                                     </tr> 
-
+                                    </c:if>
                                 </c:forEach>
                             </tbody>
                         </table>
@@ -59,7 +70,7 @@
                 </main>
             </div>
         </div>
-
+</c:if>
         <script src="javaScript/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
         <script src="javaScript/dashboard.js"></script>
