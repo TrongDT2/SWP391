@@ -17,57 +17,68 @@
         <script src="https://kit.fontawesome.com/d3c64dc7da.js" crossorigin="anonymous"></script>
     </head>
     <body>
+        <c:if test="${sessionScope.data_session.role_id == 1 }">
+            <%@include file="../../component/headerAdmin.jsp" %>
 
-        <%@include file="../../component/headerAdmin.jsp" %>
+            <div class="container-fluid">
+                <div class="row">
+                    <%@include file="../../component/sidebar.jsp" %>
 
-        <div class="container-fluid">
-            <div class="row">
-                <%@include file="../../component/sidebar.jsp" %>
-
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                    <h2>Dash board</h2>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">UserName</th>
-                                    <th scope="col">Phone</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Address</th>
-                                    <th scope="col">Date of Birth</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach items="${ListAccount}" var="o">
+                    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                        <h2>Dash board</h2>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-sm">
+                                <thead>
                                     <tr>
-                                        <td>${o.user_id}</td>
-                                        <td>${o.username}</td>
-                                        <td>${o.phone}</td>
-                                        <td>${o.email}</td>
-                                        <td>${o.address}</td>
-                                        <td>${o.date}</td>
-                                        <td>
-                                            <c:forEach items="${ListRole}" var="c">
-                                                <c:if test="${c.role_id == o.role_id}" >${c.role_name}</c:if>
-                                            </c:forEach>
-                                        </td>
-                                        <td>
-                                            <a href="EditController?uName=${o.username}"><i class="fa-solid fa-pen"></i></a>
-                                            &nbsp; &nbsp;
-                                            <a href="DeleteController?uName=${o.username}"><i class="fa-regular fa-trash-can"></i></a>
-                                            
-                                        </td>
-                                    </tr> 
+                                        <th scope="col">Id</th>
+                                        <th scope="col">UserName</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">Date of Birth</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${ListAccount}" var="o">
+                                        <tr>
+                                            <td>${o.user_id}</td>
+                                            <td>${o.username}</td>
+                                            <td>${o.phone}</td>
+                                            <td>${o.email}</td>
+                                            <td>${o.address}</td>
+                                            <td>${o.date}</td>
+                                            <td>
+                                                <c:forEach items="${ListRole}" var="c">
+                                                    <c:if test="${c.role_id == o.role_id}" >${c.role_name}</c:if>
+                                                </c:forEach>
+                                            </td>
+                                            <td>
+                                                <a href="EditController?uName=${o.username}"><i class="fa-solid fa-pen"></i></a>
+                                                &nbsp; &nbsp;
+                                                <a  href = "DeleteController?uName=${o.username}" onclick="check()" id="delete"><i class="fa-regular fa-trash-can"></i></a>
 
+                                            </td>
+                                        </tr> 
+                                    <script>
+                                        var a = document.getElementById('delete');
+                                        function check() {
+                                            if (confirm('Are you sure you want to delete?')) {
+                                                // Save it!
+                                                a.href = "DeleteController?uName=${o.username}"
+                                            } else {
+                                                // Do nothing!
+                                                console.log('Thing was not saved to the database.');
+                                            }
+                                        }
+                                    </script>
                                 </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
-                </main>
+                                </tbody>
+                            </table>
+                        </div>
+                    </main>
+                </div>
             </div>
-        </div>
-
+        </c:if>
 
         <script src="javaScript/bootstrap.bundle.min.js"></script>
 

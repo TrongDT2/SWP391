@@ -64,7 +64,7 @@ public class addNewsController extends HttpServlet {
         UserDAOImpl dao = new UserDAOImpl();
         List<Category> category = dao.getCategory();
         request.setAttribute("category", category);
-        request.getRequestDispatcher("view/administrator/addNewsManager.jsp").forward(request, response);
+        request.getRequestDispatcher("view/Creator/addNewsManager.jsp").forward(request, response);
     }
 
     /**

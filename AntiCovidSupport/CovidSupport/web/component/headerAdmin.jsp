@@ -3,7 +3,7 @@
     Created on : Mar 21, 2022, 9:19:01 PM
     Author     : Aur
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,14 +16,17 @@
     </head>
     <body>
         <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="home.jsp">Admin</a>
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="homeController"><c:if test="${sessionScope.data_session.role_id == 1}">Admin</c:if><c:if test="${sessionScope.data_session.role_id == 2}">Creator</c:if></a>
             <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+            <form action="SearchController" method="Post" style="display: inline-flex">
+            <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" name="search">
+            <input  class="btn btn-primary"type="submit" value="Search">
+            </form>
             <div class="navbar-nav">
                 <div class="nav-item text-nowrap">
-                    <a class="nav-link px-3" href="#">Sign out</a>
+                    <a class="nav-link px-3" href="LoginController">Sign out</a>
                 </div>
             </div>
         </header>

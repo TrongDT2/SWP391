@@ -80,6 +80,42 @@
         <servlet-name>LoginGoogleController</servlet-name>
         <servlet-class>controller.LoginGoogleController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>homeController</servlet-name>
+        <servlet-class>controller.homeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>postModerationController</servlet-name>
+        <servlet-class>controller.postModerationController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>postModDetailController</servlet-name>
+        <servlet-class>controller.postModDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>postChangeStatusController</servlet-name>
+        <servlet-class>controller.postChangeStatusController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListQAController</servlet-name>
+        <servlet-class>controller.ListQAController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PostController</servlet-name>
+        <servlet-class>controller.PostController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetailController</servlet-name>
+        <servlet-class>controller.DetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>postDetail</servlet-name>
+        <servlet-class>controller.postDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchController</servlet-name>
+        <servlet-class>controller.SearchController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/view/client/news-list</url-pattern>
@@ -163,6 +199,42 @@
     <servlet-mapping>
         <servlet-name>LoginGoogleController</servlet-name>
         <url-pattern>/login-google</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>homeController</servlet-name>
+        <url-pattern>/homeController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>postModerationController</servlet-name>
+        <url-pattern>/postModerationController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>postModDetailController</servlet-name>
+        <url-pattern>/postModDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>postChangeStatusController</servlet-name>
+        <url-pattern>/postChangeStatusController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListQAController</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PostController</servlet-name>
+        <url-pattern>/PostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailController</servlet-name>
+        <url-pattern>/DetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>postDetail</servlet-name>
+        <url-pattern>/postDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchController</servlet-name>
+        <url-pattern>/SearchController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

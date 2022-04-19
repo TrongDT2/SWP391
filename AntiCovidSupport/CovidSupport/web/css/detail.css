@@ -1,0 +1,400 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+
+
+.top-bar, .slide-show-main, .feedback-form{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+.top-bar, .slide-show, .feedback-form{
+    margin: 30px 120px 0 120px;
+}
+
+
+.feedback-form{
+    flex-direction: column; 
+    padding: 0 100px 30px 100px; 
+    font-size: 1.3em;
+    position: relative;
+}
+.nav-top{
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-top-items{
+    margin: 20px 20px 20px 0;
+    cursor: pointer;
+    padding: 6px 20px !important;
+    font-weight: bold;
+}
+.cart, .cart-count{
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart{
+    border: 1px solid #0D6EFC;
+    color: #0D6EFC;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 0 10px gray;
+}
+
+.cart-count{
+    background-color: #0D6EFC;
+    position: absolute;
+    right: -15px;
+    height: 30px;
+    width: 30px;
+    color: #fff;
+    top: -8px;
+}
+
+.slide-show, .feedback-form{
+    box-shadow: 0 8px 15px #cccccc;
+    border-radius: 3px;
+}
+
+.slide-show-main{
+    width: calc(100% - 20px);
+    height: 450px;
+    padding: 10px;
+}
+
+.btn-previous, .btn-next{
+    cursor: pointer;
+    margin: 0 30px;
+    height: 70px;
+    width: 70px;
+}
+
+.btn-previous{
+    transform: rotate(-45deg);
+}
+
+.btn-next{
+    transform: rotate(135deg);
+}
+
+.line-side, .line-top{
+    transition: background-color 0.1s;
+    border: 1px solid lightgray;
+    background-color: #fff;
+    border-radius: 10px;
+    height: 6px;
+}
+.line-top{
+    transform: rotate(10deg) translateY(5px);
+}
+.line-side{
+    transform: rotate(80deg) translate(17.5px, 29.5px);
+}
+
+.btn-previous:active .line-side,
+.btn-previous:active .line-top,
+.btn-previous:active .line-side:after,
+.btn-next:active .line-side,
+.btn-next:active .line-top,
+.btn-next:active .line-side:after
+{
+    background-color: #dcdcdc;
+}
+
+.btn-previous > .line-top, .btn-previous > .line-side{
+    box-shadow: 2px 2px 7px #999999;
+}
+
+.btn-next > .line-top,.btn-next > .line-side{
+    box-shadow: -1px -2px 7px #999999;
+}
+.line-side::after{
+    transform: rotate(-70deg) translate(21px, -29px);
+    transition: background-color 0.1s;
+    background-color: #fff;
+    border-radius: 10px;
+    display: block;
+    border: none;
+    content: '';
+    height: 6px;
+    width: 98%;
+
+}
+
+.main-img, #slide-show-thumb, #slide-show-thumb > li{
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    display: flex;
+}
+.main-img{
+    height: 100%;
+    width: 50%;
+
+}
+
+#slide-show-thumb{
+    width: calc(100% - 20px);
+    list-style-type: none;
+    padding: 10px;
+    height: 90px;
+}
+
+#slide-show-thumb > li{
+    max-height: 80px;
+    margin: 0 10px;
+    padding: 0;
+}
+.thumb-img{
+    cursor: pointer;
+    width: 150px;
+    height: auto;
+    margin: 0;
+}
+
+.active{
+    border: 4px solid blue;
+}
+.rate {
+    padding: 0 10px 5px 10px;
+    align-items: center;
+    position: relative;
+    color: #cccccc;
+    display: flex;
+    height: 55px;
+    float: left;
+}
+
+.rate > span::before{
+    font-size: 1.9rem;
+    display: block;
+    content: '★';
+    width: 30px;
+}
+
+.rate > .half::after{
+    position: absolute;
+    font-size: 1.9rem;
+    overflow: hidden;
+    display: block;
+    content: '★';
+    color: gold;
+    width: 16px;
+    top: 2px;
+}
+
+.form-group{
+    align-items: center;
+    position: relative;
+    margin: 10px 0;
+    display: flex;
+}
+.form-group > textarea{
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin: 0 10px;
+    padding: 10px;
+    outline: none;
+}
+
+.form-group > button{
+    padding: 8px 30px !important;
+    font-size: 0.9em;
+}
+
+.comment{
+    margin-left: 170px;
+    height: 300px;
+    width: 50%;
+}
+
+.btn-rate{
+    transition: background-color 0.3s;
+    padding: 8px 25px !important;
+    background-color: inherit;
+    border-radius: 3px;
+    cursor: pointer;
+    border: none;
+}
+
+
+.btn-rate:hover{
+    background-color: #198754;
+    color: #fff;
+}
+
+
+.comment-rate {
+    align-items: center;
+    position: relative;
+    margin-left: 5px;
+    color: #cccccc;
+    display: flex;
+    height: 15px;
+    width: 60%;
+}
+
+.comment-rate > span::before{
+    font-size: 1rem;
+    display: block;
+    content: '★';
+    width: 20px;
+}
+
+.comment-rate > .half::after{
+    position: absolute;
+    overflow: hidden;
+    font-size: 1rem;
+    display: block;
+    content: '★';
+    width: 8.5px;
+    color: gold;
+    top: -6px;
+}
+
+.radio-group{
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    margin: 0 30px 0 22px;
+    align-items: center;
+    display: flex; 
+    width: 170px; 
+    height: 40px;
+
+}
+#star1,
+#star2,
+#star3,
+#star4,
+#star5{
+    position: relative;
+    cursor: pointer;
+}
+
+#star1:after,
+#star2:after,
+#star3:after,
+#star4:after,
+#star5:after{
+    transition: color 0.2s;
+    background-color: #fff;
+    position: absolute;
+    text-align: center;
+    line-height: 30px;
+    font-size: 2rem;
+    display: block;
+    color: #999999;
+    content: '★';
+    height: 30px;
+    width: 30px;
+    left: -10px;
+    top: -11px;
+}
+
+input:hover:after,
+input:hover ~ input:after{
+    color: goldenrod !important;
+}
+input:checked:after,
+input:checked ~ input:after{
+    color: gold !important;
+}
+
+#tooltip-comment{
+    background-color: #333333;
+    border-radius: 10px;
+    padding: 10px 15px;
+    position: absolute;
+    min-width: 200px;
+    text-align: left;
+    color: #fff;
+    top: 91%;
+    left: 12%;
+    animation: fade-in 0.2s;
+    transform-origin: top;
+    display: none;
+}
+
+
+#tooltip-comment:before{
+    display: block;
+    height: 1px;
+    width: 1px;
+    content: '';
+    background-color: transparent;
+    position: absolute;
+    transform: rotate(45deg);
+    border: 10px solid transparent;
+    border-color: #333333  transparent transparent #333333;
+    border-radius: 3px;
+    top: -8px;
+    left: 15px;
+}
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: scaleY(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+
+#custom-message-box{
+    position: absolute;
+    width: 400px;
+    height: 120px;
+    border-radius: 10px; 
+    border: 2px solid;
+    line-height: 120px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    top:30%;
+    z-index: 1;
+    animation: fade-in 0.2s;
+    display: none;
+}
+
+.pagination {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 60px 0 0 0;
+}
+
+.pagination > button{
+    height: 35px;
+    border-radius: 20px !important;
+    padding: 5px 15px !important;
+    margin: 0 10px;
+}
+.pagination-index{
+    border-radius: 50%;
+    height: 15px;
+    width: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid lightgray;
+    margin: 0 2px;
+}
+
+
+
+.pagination-active{
+    background-color: #198754;
+    color: #fff;
+}

@@ -67,7 +67,7 @@ public class EditNewsController extends HttpServlet {
         List<Category> category = dao.getCategory();
         request.setAttribute("category", category);
         request.setAttribute("news", news);
-        request.getRequestDispatcher("view/administrator/editNewsManager.jsp").forward(request, response);
+        request.getRequestDispatcher("view/Creator/editNewsManager.jsp").forward(request, response);
     }
 
     /**
@@ -84,13 +84,12 @@ public class EditNewsController extends HttpServlet {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd");
         LocalDate localDate = LocalDate.now();
-
         int newid = Integer.parseInt(request.getParameter("id"));
         String title = request.getParameter("title");
         String image = request.getParameter("image");
         String date = dtf.format(localDate);
         int categoryid = Integer.parseInt(request.getParameter("category"));
-        String author = request.getParameter("author");
+        
         String description = request.getParameter("description");
         String message = null;
         String success = null;
@@ -100,7 +99,6 @@ public class EditNewsController extends HttpServlet {
             n.setTitle(title);
             n.setImage(image);
             n.setDate(date);
-            n.setAuthor(author);
             n.setContent(description);
             n.setNews_id(newid);
             n.setCategory_id(categoryid);
@@ -116,7 +114,7 @@ public class EditNewsController extends HttpServlet {
         List<Category> category = dao.getCategory();
         request.setAttribute("category", category);
         request.setAttribute("news", news);
-        request.getRequestDispatcher("view/administrator/editNewsManager.jsp").forward(request, response);
+        request.getRequestDispatcher("view/Creator/editNewsManager.jsp").forward(request, response);
     }
 
     /**

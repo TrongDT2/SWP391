@@ -17,18 +17,20 @@ public class News {
     private int category_id;
     private String title;
     private String author;
+    private String status;
 
     public News() {
     }
 
-    public News(int news_id, String content, String image, String Date, int category_id, String title, String author) {
+    public News(int news_id, String content, String image, String date, int category_id, String title, String author, String status) {
         this.news_id = news_id;
         this.content = content;
         this.image = image;
-        this.date = Date;
+        this.date = date;
         this.category_id = category_id;
         this.title = title;
         this.author = author;
+        this.status = status;
     }
 
     public int getNews_id() {
@@ -59,8 +61,8 @@ public class News {
         return date;
     }
 
-    public void setDate(String Date) {
-        this.date = Date;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public int getCategory_id() {
@@ -86,6 +88,15 @@ public class News {
     public void setAuthor(String author) {
         this.author = author;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
 
 
 }

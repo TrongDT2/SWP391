@@ -341,7 +341,8 @@ public class UserDAOImpl extends DBContext implements UserDAO {
     public List<News> getAllNews() {
         List<News> list = new ArrayList<>();
         try {
-            String sql = "select * from News";
+            String sql = "select n.*, u.Username from News n join UserInfo u\n"
+                    + "on n.author = u.User_id";
             con = new DBContext().getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -353,7 +354,8 @@ public class UserDAOImpl extends DBContext implements UserDAO {
                 n.setDate(rs.getString("Date"));
                 n.setCategory_id(rs.getInt("Category_id"));
                 n.setTitle(rs.getString("title"));
-                n.setAuthor(rs.getString("author"));
+                n.setAuthor(rs.getString("Username"));
+                n.setStatus(rs.getString("Status"));
                 list.add(n);
             }
         } catch (Exception ex) {
@@ -366,7 +368,8 @@ public class UserDAOImpl extends DBContext implements UserDAO {
 
         try {
             con = new DBContext().getConnection();
-            String sql = "select * from News where News_id =?";
+            String sql = "select n.*, u.Username from News n join UserInfo u\n"
+                    + "on n.author = u.User_id where News_id =?";
             ps = con.prepareStatement(sql);
             ps.setString(1, id);
             rs = ps.executeQuery();
@@ -378,7 +381,7 @@ public class UserDAOImpl extends DBContext implements UserDAO {
                 n.setDate(rs.getString("Date"));
                 n.setCategory_id(rs.getInt("Category_id"));
                 n.setTitle(rs.getString("title"));
-                n.setAuthor(rs.getString("author"));
+                n.setAuthor(rs.getString("username"));
                 return n;
             }
         } catch (Exception ex) {
@@ -391,15 +394,15 @@ public class UserDAOImpl extends DBContext implements UserDAO {
 
         try {
             con = new DBContext().getConnection();
-            String sql = "update News set Content = ?, Image = ?, Date = ?, Category_id = ?, title = ?, author = ? where News_id =?";
+            String sql = "update News set Content = ?, Image = ?, Date = ?, Category_id = ?, title = ?, Status = 0 where News_id =?";
             ps = con.prepareStatement(sql);
             ps.setString(1, n.getContent());
             ps.setString(2, n.getImage());
             ps.setString(3, n.getDate());
             ps.setInt(4, n.getCategory_id());
             ps.setString(5, n.getTitle());
-            ps.setString(6, n.getAuthor());
-            ps.setInt(7, n.getNews_id());
+
+            ps.setInt(6, n.getNews_id());
             ps.executeUpdate();
 
         } catch (Exception ex) {
@@ -461,5 +464,96 @@ public class UserDAOImpl extends DBContext implements UserDAO {
         } catch (Exception ex) {
             Logger.getLogger(UserDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public List<News> getAllNewsWithStatus() {
+        List<News> list = new ArrayList<>();
+        try {
+            String sql = "select * from News where Status = 0";
+            con = new DBContext().getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                News n = new News();
+                n.setNews_id(rs.getInt("News_id"));
+                n.setContent(rs.getString("Content"));
+                n.setImage(rs.getString("Image"));
+                n.setDate(rs.getString("Date"));
+                n.setCategory_id(rs.getInt("Category_id"));
+                n.setTitle(rs.getString("title"));
+                n.setAuthor(rs.getString("author"));
+                list.add(n);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ManagerAccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    public News getNewsById(String id) {
+
+        try {
+            String sql = "select * from News where News_id = ?";
+            con = new DBContext().getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                News n = new News();
+                n.setNews_id(rs.getInt("News_id"));
+                n.setContent(rs.getString("Content"));
+                n.setImage(rs.getString("Image"));
+                n.setDate(rs.getString("Date"));
+                n.setCategory_id(rs.getInt("Category_id"));
+                n.setTitle(rs.getString("title"));
+                n.setAuthor(rs.getString("author"));
+                return n;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ManagerAccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public void updateStatus(String id, int status) {
+
+        try {
+            con = new DBContext().getConnection();
+            String sql = "update News set Status = ? where News_id =?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, status);
+            ps.setString(2, id);
+            ps.executeUpdate();
+
+        } catch (Exception ex) {
+            Logger.getLogger(UserDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+    }
+
+    public List<Account> searchAccount(String search) {
+        List<Account> list = new ArrayList<>();
+
+        try {
+            String sql = "select User_id,Username,Phone,Email,Address,Dob,Role_id from UserInfo where Username like ?";
+            con = new DBContext().getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, "%" + search + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Account a = new Account();
+                a.setUser_id(rs.getInt("User_id"));
+                a.setUsername(rs.getString("Username"));
+                a.setPhone(rs.getInt("Phone"));
+                a.setEmail(rs.getString("Email"));
+                a.setAddress(rs.getString("Address"));
+                a.setDate(rs.getString("Dob"));
+                a.setRole_id(rs.getInt("Role_id"));
+                list.add(a);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ManagerAccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
 }
